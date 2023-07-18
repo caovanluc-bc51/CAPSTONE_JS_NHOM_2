@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Title</title>
+    <!-- Required meta tags -->
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
+
+    <!-- Bootstrap CSS -->
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+      integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+      crossorigin="anonymous"
+    />
+  </head>
+  <body>
+    <div class="container">
+      <header class="display-4 my-4">PRODUCT MANAGER</header>
+      <!-- Phan tab menu -->
+      <ul class="nav nav-tabs" role="tablist">
+        <li class="nav-item">
+          <a
+            class="nav-link active"
+            href="#DanhSachSP"
+            role="tab"
+            data-toggle="tab"
+            >List Product</a
+          >
+        </li>
+      </ul>
+      <br />
+      <!-- Tab panes -->
+      <div class="tab-content">
+        <!--Danh sách sản phẩm -->
+        <div role="tabpanel" class="tab-pane in active" id="DanhSachSP">
+          <div class="row">
+            <!-- BẮT ĐẦU LỌC DANH MỤC SẢN PHẨM -->
+            <div class="col-md-6">
+              <div class="form-group">
+                <select id="mySelect" onchange="catelogy()">
+                  <option value="chonLoaiKhachHang">Catelogy</option>
+                  <option value="nguoiDan">Samsung</option>
+                  <option value="doanhNghiep">Iphone</option>
+                </select>
+            </div>
+            <div class="col-md-6">
+              <!-- BEGIN BUTTOM THÊM MỚI -->
+              <button
+                id="btnAddProduct"
+                class="btn btn-success"
+                data-toggle="modal"
+                data-target="#myModal" 
+              >
+                <i class="fa fa-plus mr-1"></i>
+                + Add Product
+              </button>
+              <!-- END BUTTON THÊM MỚI -->
+            </div>
+          </div>
+          <div class="clear-fix"></div>
+          <div class="tblSanPham" id="tblSanPham">
+            <!-- BEGIN TABLE SẢN PHẨM -->
+            <table class="table table-bordered">
+              <thead>
+                <th>No.</th>
+                <th>Name</th>
+                <th>Price</th>
+                <th>Screen</th>
+                <th>Back Camera</th>
+                <th>Front Camera</th>
+                <th>Image Link</th>
+                <th>Type</th>
+                <th>Description</th>
+                <th>Action</th>
+              </thead>
+              <tbody id="tblDanhSachSP"></tbody>
+            </table>
+            <!-- END TABLE SẢN PHẨM -->
+          </div>
+          <br />
+        </div>
+        <!-- Kết thúc danh sách sản phẩm -->
+      </div>
+
+      <!--KetThuc Tabmenu-->
+
+      <!-- The Modal -->
+      <div class="modal fade" id="myModal">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <!-- Modal Header -->
+            <div class="modal-header">
+              <h4 class="modal-title">Add Product</h4>
+              <button type="button" class="close" data-dismiss="modal">
+                &times;
+              </button>
+            </div>
+            <!-- Modal body -->
+            <div class="modal-body">
+              <div class="form-group">
+                <label>Name</label>
+                <input
+                  id="name"
+                  class="form-control"
+                  placeholder="Enter the product name"
+                />
+              </div>
+              <div class="form-group">
+                <label>Price</label>
+                <input
+                  id="price"
+                  class="form-control"
+                  placeholder="Enter product price"
+                />
+              </div>
+              <div class="form-group">
+                <label>Screen</label>
+                <input
+                  id="screen"
+                  class="form-control"
+                  placeholder="Enter product screen size"
+                />
+              </div>
+              <div class="form-group">
+                <label>Back Camera</label>
+                <input
+                  id="backCamera"
+                  class="form-control"
+                  placeholder="Enter product back camera"
+                />
+              </div>
+              <div class="form-group">
+                <label>Front Camera</label>
+                <input
+                  id="frontCamera"
+                  class="form-control"
+                  placeholder="Enter product front camera"
+                />
+              </div>
+              <div class="form-group">
+                <label>Image Link</label>
+                <input
+                  id="imageLink"
+                  class="form-control"
+                  placeholder="Enter product image link"
+                />
+              </div>
+              <div class="form-group">
+                <label>Type</label>
+                <input
+                  id="type"
+                  class="form-control"
+                  placeholder="Enter product type"
+                />
+              </div>
+              <div class="form-group">
+                <label>Description</label>
+                <input
+                  id="description"
+                  class="form-control"
+                  placeholder="Enter product description"
+                />
+              </div>
+            </div>
+            <!-- Modal footer -->
+            <div class="modal-footer"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div id="container"></div>
+    <style>
+      #container {
+        min-width: 310px;
+        max-width: 800px;
+        height: 400px;
+        margin: 0 auto;
+      }
+    </style>
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script
+      src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+      integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+      integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+      integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+      crossorigin="anonymous"
+    ></script>
+    <!-- cdn axios -->
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.4.0/axios.min.js"
+      integrity="sha512-uMtXmF28A2Ab/JJO2t/vYhlaa/3ahUOgj1Zf27M5rOo8/+fcTUVH0/E0ll68njmjrLqOBjXM3V9NiPFL5ywWPQ=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    ></script>
+    <script src="./src/models/product.js"></script>
+    <script src="./src/service/api.js"></script>
+    <script src="./src/controller/manager.js"></script>
+  </body>
+</html>
