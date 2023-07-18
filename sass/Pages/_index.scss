@@ -1,0 +1,53 @@
+.container {
+  h2 {
+    color: $primaryColor;
+    text-align: center;
+    margin-top: 50px;
+    font-size: 50px;
+  }
+}
+.navigation {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.card {
+  align-items: center;
+  border: none;
+  transition: all 0.3s;
+  .content {
+    border-radius: 30px;
+    border: 5px solid $borderColorIndex;
+    background: linear-gradient(
+        0deg,
+        rgba(0, 0, 0, 0.06) 0%,
+        rgba(0, 0, 0, 0.06) 100%
+      ),
+      #fff;
+    backdrop-filter: blur(2px);
+    &:hover {
+      text-decoration: none;
+    }
+
+    img {
+      height: 450px;
+      object-fit: cover;
+      padding: 30px;
+    }
+
+    h4 {
+      color: $primaryColor;
+      text-align: center;
+      font-size: 32px;
+      font-style: normal;
+      font-weight: 500;
+      padding-bottom: 30px;
+    }
+  }
+
+  &:hover {
+    transform: scale(1.03);
+  }
+}
