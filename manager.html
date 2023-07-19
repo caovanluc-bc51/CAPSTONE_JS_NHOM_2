@@ -41,12 +41,20 @@
             <!-- BẮT ĐẦU LỌC DANH MỤC SẢN PHẨM -->
             <div class="col-md-6">
               <div class="form-group">
-                <select id="mySelect" onchange="catelogy()">
-                  <option value="chonLoaiKhachHang">Catelogy</option>
-                  <option value="nguoiDan">Samsung</option>
-                  <option value="doanhNghiep">Iphone</option>
+                <select id="mySelect" onchange="getCatelogy()">
+                  <option value="Catelogy">Catelogy</option>
+                  <option value="Samsung">Samsung</option>
+                  <option value="Iphone">Iphone</option>
                 </select>
             </div>
+            <div class="input-group mb-3">
+              <input
+                type="text"
+                class="form-control"
+                placeholder="Nhập tên sản phẩm cần tìm kiếm"
+                aria-label="Recipient's username"
+                aria-describedby="basic-addon2" id="searchProduct"
+              />
             <div class="col-md-6">
               <!-- BEGIN BUTTOM THÊM MỚI -->
               <button
@@ -73,8 +81,8 @@
                 <th>Back Camera</th>
                 <th>Front Camera</th>
                 <th>Image Link</th>
-                <th>Type</th>
                 <th>Description</th>
+                <th>Type</th>
                 <th>Action</th>
               </thead>
               <tbody id="tblDanhSachSP"></tbody>
