@@ -222,3 +222,46 @@ function searchProduct() {
     });
 }
 getEle("searchProduct").addEventListener("keyup", searchProduct);
+//Sort Product
+function sortProduct() {
+  var sort = getEle("mySelect2").value;
+  if (sort === "smallToBig") {
+    var promise = api.getListProductApi();
+    promise
+      .then(function (result) {
+        for (var i = 0; i < result.data.length - 1; i++) {
+          for (var j = i + 1; j < result.data.length; j++) {
+            if (result.data[i].price > result.data[j].price) {
+              var temp = result.data[i];
+              result.data[i] = result.data[j];
+              result.data[j] = temp;
+            }
+          }
+        }
+        renderUIManager(result.data);
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
+  } else if (sort === "bigToSmall") {
+    var promise = api.getListProductApi();
+    promise
+      .then(function(result){
+        for (var i = 0; i < result.data.length - 1; i++) {
+          for (var j = i + 1; j < result.data.length; j++) {
+            if (result.data[i].price < result.data[j].price) {
+              var temp = result.data[i];
+              result.data[i] = result.data[j];
+              result.data[j] = temp;
+            }
+          }
+        }
+        renderUIManager(result.data);
+      })
+      .catch(function(error){
+        console.log(error);
+      });
+  } else {
+    getListProduct();
+  }
+}
