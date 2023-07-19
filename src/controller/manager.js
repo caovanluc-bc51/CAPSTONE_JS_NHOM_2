@@ -54,15 +54,7 @@ getEle("btnAddProduct").onclick = function () {
 };
 //
 function addProduct() {
-  getEle("name").value = "";
-  getEle("price").value = "";
-  getEle("screen").value = "";
-  getEle("backCamera").value = "";
-  getEle("frontCamera").value = "";
-  getEle("imageLink").value = "";
-  getEle("type").value = "";
-  getEle("description").value = "";
-  //dom lấy value
+  //dom id get value
   var name = getEle("name").value;
   var price = getEle("price").value;
   var screen = getEle("screen").value;
@@ -94,15 +86,18 @@ function addProduct() {
 }
 //
 function deleteProduct(id) {
-  var promise = api.deleteProductApi(id);
-  promise
-    .then(function (result) {
-      alert(`Delele ${result.data.name} Success`);
-      getListProduct();
-    })
-    .catch(function (error) {
-      console.log(error);
-    });
+  //Ask a question before deleting a product
+  if (confirm(`Are you sure to delete the product?`)) {
+    var promise = api.deleteProductApi(id);
+    promise
+      .then(function (result) {
+        alert(`Delele ${result.data.name} Success`);
+        getListProduct();
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
+  }
 }
 //
 function editProduct(id) {
@@ -146,24 +141,84 @@ function updateProduct(id) {
     type,
     description
   );
-  var promise = api.updateProductApi(product);
+  if (confirm(`Are you sure to update the product?`)) {
+    var promise = api.updateProductApi(product);
+    promise
+      .then(function () {
+        document.getElementsByClassName("close")[0].click();
+        getListProduct();
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
+  } else {
+    document.getElementsByClassName("close")[0].click();
+  }
+}
+//onchange getCatelogy
+function getCatelogy() {
+  var type = getEle("mySelect").value;
+  if (type === "Samsung") {
+    var listSamSung = [];
+    var promise = api.getListProductApi();
+    promise
+      .then(function (result) {
+        for (var i = 0; i < result.data.length; i++) {
+          var samsung = result.data[i];
+          if (
+            result.data[i].type === "Samsung" ||
+            result.data[i].type === "samsung"
+          ) {
+            listSamSung.push(samsung);
+          }
+        }
+        renderUIManager(listSamSung);
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
+  } else if (type === "Iphone") {
+    var listIphone = [];
+    var promise = api.getListProductApi();
+    promise
+      .then(function (result) {
+        for (var i = 0; i < result.data.length; i++) {
+          var iphone = result.data[i];
+          if (
+            result.data[i].type === "Iphone" ||
+            result.data[i].type === "iphone"
+          ) {
+            listIphone.push(iphone);
+          }
+        }
+        renderUIManager(listIphone);
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
+  } else {
+    getListProduct();
+  }
+}
+//search name product
+function searchProduct() {
+  var txtSearch = getEle("searchProduct").value;
+  var promise = api.getListProductApi();
   promise
-    .then(function () {
-      document.getElementsByClassName("close")[0].click();
-      getListProduct();
+    .then(function (result) {
+      var searchArray = [];
+      for (var i = 0; i < result.data.length; i++) {
+        var product = result.data[i];
+        var keywordSearch = txtSearch.toLowerCase();
+        var productName = result.data[i].name.toLowerCase();
+        if (productName.indexOf(keywordSearch) !== -1) {
+          searchArray.push(product);
+        }
+      }
+      renderUIManager(searchArray);
     })
     .catch(function (error) {
       console.log(error);
     });
 }
-// reset data khi nhấn edit mà bấm x
-// getEle("btnAddProduct").onclick = function () {
-//   getEle("name").value = "";
-//   getEle("price").value = "";
-//   getEle("screen").value = "";
-//   getEle("backCamera").value = "";
-//   getEle("frontCamera").value = "";
-//   getEle("imageLink").value = "";
-//   getEle("type").value = "";
-//   getEle("description").value = "";
-// };
+getEle("searchProduct").addEventListener("keyup", searchProduct);
