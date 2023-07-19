@@ -21,7 +21,7 @@
   </head>
   <body>
     <div class="container">
-      <header class="display-4 my-4">PRODUCT MANAGER</header>
+      <header class="display-4 my-4" style="color: red; font-weight: 700;">PRODUCT MANAGER</header>
       <!-- Phan tab menu -->
       <ul class="nav nav-tabs" role="tablist">
         <li class="nav-item">
@@ -30,7 +30,7 @@
             href="#DanhSachSP"
             role="tab"
             data-toggle="tab"
-            >List Product</a
+            style="font-weight: 800;">List Product</a
           >
         </li>
       </ul>
@@ -42,6 +42,7 @@
           <div class="row">
             <!-- BẮT ĐẦU LỌC DANH MỤC SẢN PHẨM -->
             <div class="col-md-6">
+              <!-- catelogy -->
               <div class="form-group">
                 <select id="mySelect" onchange="getCatelogy()">
                   <option value="Category">Category</option>
@@ -49,13 +50,12 @@
                   <option value="Iphone">Iphone</option>
                 </select>
               </div>
-            </div>
-            <div class="col-md-6">
+              <!-- sortProduct -->
               <div class="form-group">
                 <select id="mySelect2" onchange="sortProduct()">
-                  <option value="sortProduct">Sắp xếp theo giá tiền</option>
-                  <option value="smallToBig">Từ bé đến lớn</option>
-                  <option value="bigToSmall">Từ lớn đến bé</option>
+                  <option value="sortProduct">Sort By Price</option>
+                  <option value="smallToBig">Low to High</option>
+                  <option value="bigToSmall">High to Low</option>
                 </select>
             </div>
             <div class="input-group mb-3">
