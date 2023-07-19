@@ -61,8 +61,8 @@ function addProduct() {
   var backCamera = getEle("backCamera").value;
   var frontCamera = getEle("frontCamera").value;
   var imageLink = getEle("imageLink").value;
-  var type = getEle("type").value;
   var description = getEle("description").value;
+  var type = getEle("type").value;
   var product = new Product(
     "",
     name,
@@ -71,8 +71,8 @@ function addProduct() {
     backCamera,
     frontCamera,
     imageLink,
-    type,
-    description
+    description,
+    type
   );
   var promise = api.addProductApi(product);
   promise
@@ -113,8 +113,8 @@ function editProduct(id) {
       getEle("backCamera").value = result.data.backCamera;
       getEle("frontCamera").value = result.data.frontCamera;
       getEle("imageLink").value = result.data.img;
-      getEle("type").value = result.data.type;
       getEle("description").value = result.data.desc;
+      getEle("type").value = result.data.type;
     })
     .catch(function (error) {
       console.log(error);
@@ -128,8 +128,8 @@ function updateProduct(id) {
   var backCamera = getEle("backCamera").value;
   var frontCamera = getEle("frontCamera").value;
   var imageLink = getEle("imageLink").value;
-  var type = getEle("type").value;
   var description = getEle("description").value;
+  var type = getEle("type").value;
   var product = new Product(
     id,
     name,
@@ -138,8 +138,8 @@ function updateProduct(id) {
     backCamera,
     frontCamera,
     imageLink,
-    type,
-    description
+    description,
+    type
   );
   if (confirm(`Are you sure to update the product?`)) {
     var promise = api.updateProductApi(product);
