@@ -1,1 +1,48 @@
-/*# sourceMappingURL=shop.css.map */
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+h2 {
+  color: #09838d !important;
+  margin-top: 20px;
+  font-size: 32px;
+}
+
+.cardPhone {
+  border-radius: 10px;
+}
+.cardPhone img {
+  padding: 20px;
+}
+.cardPhone .cardPhone__title {
+  font-size: 20px;
+  font-weight: 500;
+  line-height: 24px;
+  color: #09838d;
+}
+.cardPhone .cardPhone__price {
+  font-size: 18px;
+  font-weight: 500;
+  color: #b3b3b3;
+}
+.cardPhone .btnPhone-shadow {
+  background-color: #cee6e8;
+  color: #09838d;
+  display: flex;
+  padding: 6px 16px;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+  align-self: stretch;
+  width: 100%;
+  border: 1px solid #cee6e8;
+  outline: none;
+  border-radius: 5px;
+  transition: all 0.3s;
+}
+.cardPhone .btnPhone-shadow:hover {
+  border-color: #09838d;
+  background: transparent;
+}/*# sourceMappingURL=shop.css.map */
