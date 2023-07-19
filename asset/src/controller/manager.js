@@ -246,7 +246,7 @@ function sortProduct() {
   } else if (sort === "bigToSmall") {
     var promise = api.getListProductApi();
     promise
-      .then(function(result){
+      .then(function (result) {
         for (var i = 0; i < result.data.length - 1; i++) {
           for (var j = i + 1; j < result.data.length; j++) {
             if (result.data[i].price < result.data[j].price) {
@@ -258,7 +258,7 @@ function sortProduct() {
         }
         renderUIManager(result.data);
       })
-      .catch(function(error){
+      .catch(function (error) {
         console.log(error);
       });
   } else {
