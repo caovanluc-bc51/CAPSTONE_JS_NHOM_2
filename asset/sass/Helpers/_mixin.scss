@@ -1,0 +1,5 @@
+@mixin titleH2($mt, $fs) {
+  color: $primaryColor !important;
+  margin-top: $mt;
+  font-size: $fs;
+}
