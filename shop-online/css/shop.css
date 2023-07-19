@@ -45,4 +45,5 @@ h2 {
 .cardPhone .btnPhone-shadow:hover {
   border-color: #09838d;
   background: transparent;
+  transition: all 0.3s;
 }/*# sourceMappingURL=shop.css.map */

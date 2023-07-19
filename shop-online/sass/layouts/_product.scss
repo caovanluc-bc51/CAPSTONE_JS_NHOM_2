@@ -36,6 +36,7 @@
     &:hover {
       border-color: $primaryColor;
       background: transparent;
+      transition: all 0.3s;
     }
   }
 }

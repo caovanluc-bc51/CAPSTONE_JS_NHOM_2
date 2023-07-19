@@ -1,4 +1,5 @@
 var api = new Service();
+var product = new Product();
 
 function getEle(id) {
   return document.getElementById(id);
