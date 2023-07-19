@@ -6,6 +6,7 @@ function Service() {
     });
     return promise;
   };
+
   this.addProductApi = function (product) {
     var promise = axios({
       url: "https://64b78ddb21b9aa6eb0785738.mockapi.io/product",
@@ -14,24 +15,27 @@ function Service() {
     });
     return promise;
   };
-  this.deleteProductApi = function(id){
+
+  this.deleteProductApi = function (id) {
     var promise = axios({
-      url:`https://64b78ddb21b9aa6eb0785738.mockapi.io/product/${id}`,
-      method:'DELETE',
+      url: `https://64b78ddb21b9aa6eb0785738.mockapi.io/product/${id}`,
+      method: "DELETE",
     });
     return promise;
   };
-  this.getDetailProductByID = function(id){
+
+  this.getDetailProductByID = function (id) {
     var promise = axios({
-      url:`https://64b78ddb21b9aa6eb0785738.mockapi.io/product/${id}`,
-      method:'GET',
+      url: `https://64b78ddb21b9aa6eb0785738.mockapi.io/product/${id}`,
+      method: "GET",
     });
     return promise;
   };
-  this.updateProductApi = function(product){
+
+  this.updateProductApi = function (product) {
     var promise = axios({
-      url:`https://64b78ddb21b9aa6eb0785738.mockapi.io/product/${product.id}`,
-      method:'PUT',
+      url: `https://64b78ddb21b9aa6eb0785738.mockapi.io/product/${product.id}`,
+      method: "PUT",
       data: product,
     });
     return promise;

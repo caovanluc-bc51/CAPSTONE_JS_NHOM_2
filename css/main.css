@@ -4,11 +4,17 @@
   box-sizing: border-box;
 }
 
+h2 {
+  color: #09838d !important;
+  margin-top: 20px;
+  font-size: 45px;
+}
+
 .container h2 {
-  color: #09838d;
   text-align: center;
+  color: #09838d !important;
   margin-top: 50px;
-  font-size: 50px;
+  font-size: 45px;
 }
 
 .navigation {
@@ -34,9 +40,6 @@
   text-decoration: none;
 }
 .card .content img {
-  height: 450px;
-  -o-object-fit: cover;
-     object-fit: cover;
   padding: 30px;
 }
 .card .content h4 {
@@ -49,4 +52,44 @@
 }
 .card:hover {
   transform: scale(1.03);
+}
+
+@media screen and (max-width: 1199px) {
+  .card .content {
+    border-radius: 25px;
+    border-width: 4px;
+  }
+  .card .content img {
+    padding: 20px;
+  }
+  .card .content h4 {
+    font-size: 28px;
+  }
+}
+@media screen and (max-width: 991px) {
+  .card .content {
+    border-radius: 25px;
+    border-width: 4px;
+  }
+  .card .content img {
+    padding: 20px;
+  }
+  .card .content h4 {
+    font-size: 24px;
+  }
+}
+@media screen and (max-width: 767px) {
+  .navigation {
+    top: 75%;
+  }
+  .card {
+    margin-bottom: 25px;
+  }
+  .card .content {
+    border-radius: 20px;
+    border-width: 3px;
+  }
+  .card .content img {
+    padding: 25px;
+  }
 }/*# sourceMappingURL=main.css.map */
