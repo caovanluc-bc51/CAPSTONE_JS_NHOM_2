@@ -54,15 +54,7 @@ getEle("btnAddProduct").onclick = function () {
 };
 //
 function addProduct() {
-  getEle("name").value = "";
-  getEle("price").value = "";
-  getEle("screen").value = "";
-  getEle("backCamera").value = "";
-  getEle("frontCamera").value = "";
-  getEle("imageLink").value = "";
-  getEle("type").value = "";
-  getEle("description").value = "";
-  //dom lấy value
+  //dom id get value
   var name = getEle("name").value;
   var price = getEle("price").value;
   var screen = getEle("screen").value;
