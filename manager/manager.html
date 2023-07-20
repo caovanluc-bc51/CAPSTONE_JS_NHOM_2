@@ -8,7 +8,11 @@
       name="viewport"
       content="width=device-width, initial-scale=1, shrink-to-fit=no"
     />
-
+    <!-- Font Awesome -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
     <!-- Bootstrap CSS -->
     <link
       rel="stylesheet"
@@ -17,11 +21,13 @@
       crossorigin="anonymous"
     />
 
-    <link rel="stylesheet" href="css/manager.css">
+    <link rel="stylesheet" href="./css/manager.css" />
   </head>
   <body>
     <div class="container">
-      <header class="display-4 my-4" style="color: red; font-weight: 700;">PRODUCT MANAGER</header>
+      <header class="display-4 my-4" style="color: red; font-weight: 700">
+        PRODUCT MANAGER
+      </header>
       <!-- Phan tab menu -->
       <ul class="nav nav-tabs" role="tablist">
         <li class="nav-item">
@@ -30,7 +36,8 @@
             href="#DanhSachSP"
             role="tab"
             data-toggle="tab"
-            style="font-weight: 800;">List Product</a
+            style="font-weight: 800"
+            >List Product</a
           >
         </li>
       </ul>
@@ -57,28 +64,31 @@
                   <option value="smallToBig">Low to High</option>
                   <option value="bigToSmall">High to Low</option>
                 </select>
-            </div>
-            <div class="input-group mb-3">
-              <input
-                type="text"
-                class="form-control"
-                placeholder="Nhập tên sản phẩm cần tìm kiếm"
-                aria-label="Recipient's username"
-                aria-describedby="basic-addon2" id="searchProduct"
-              />
-            </div>
-            <div class="col-md-6">
-              <!-- BEGIN BUTTOM THÊM MỚI -->
-              <button
-                id="btnAddProduct"
-                class="btn btn-success"
-                data-toggle="modal"
-                data-target="#myModal" 
-              >
-                <i class="fa fa-plus mr-1"></i>
-                + Add Product
-              </button>
-              <!-- END BUTTON THÊM MỚI -->
+              </div>
+              <div>
+                <!-- BEGIN BUTTOM THÊM MỚI -->
+                <button
+                  id="btnAddProduct"
+                  class="btn btn-success"
+                  data-toggle="modal"
+                  data-target="#myModal"
+                >
+                  <i class="fa fa-plus mr-1"></i>
+                  Add Product
+                </button>
+                <!-- END BUTTON THÊM MỚI -->
+              </div>
+              <br />
+              <!-- INPUT SEARCH -->
+              <div class="form-group has-search">
+                <span class="fa fa-search form-control-feedback"></span>
+                <input
+                  id="searchProduct"
+                  type="text"
+                  class="form-control"
+                  placeholder="Search by product name"
+                />
+              </div>
             </div>
           </div>
           <div class="clear-fix"></div>
@@ -115,12 +125,13 @@
             <!-- Modal Header -->
             <div class="modal-header">
               <h4 class="modal-title">Add Product</h4>
-              <button type="button" class="close" data-dismiss="modal">
+              <button type="button" class="close" data-dismiss="modal" id="close">
                 &times;
               </button>
             </div>
             <!-- Modal body -->
             <div class="modal-body">
+              <!-- NAME PRODUCT -->
               <div class="form-group">
                 <label>Name</label>
                 <input
@@ -128,7 +139,14 @@
                   class="form-control"
                   placeholder="Enter the product name"
                 />
+                <!-- validation Name -->
+                <div
+                  class="text-danger"
+                  style="display: none"
+                  id="errorName"
+                ></div>
               </div>
+              <!-- PRICE PRODUCT -->
               <div class="form-group">
                 <label>Price</label>
                 <input
@@ -136,7 +154,13 @@
                   class="form-control"
                   placeholder="Enter product price"
                 />
+                <div
+                  class="text-danger"
+                  style="display: none"
+                  id="errorPrice"
+                ></div>
               </div>
+              <!-- SCREEN PRODUCT -->
               <div class="form-group">
                 <label>Screen</label>
                 <input
@@ -144,7 +168,13 @@
                   class="form-control"
                   placeholder="Enter product screen size"
                 />
+                <div
+                  class="text-danger"
+                  style="display: none"
+                  id="errorScreen"
+                ></div>
               </div>
+              <!-- BACK CAMERA -->
               <div class="form-group">
                 <label>Back Camera</label>
                 <input
@@ -152,7 +182,13 @@
                   class="form-control"
                   placeholder="Enter product back camera"
                 />
+                <div
+                  class="text-danger"
+                  style="display: none"
+                  id="errorBackCamera"
+                ></div>
               </div>
+              <!-- FRONT CAMERA -->
               <div class="form-group">
                 <label>Front Camera</label>
                 <input
@@ -160,7 +196,13 @@
                   class="form-control"
                   placeholder="Enter product front camera"
                 />
+                <div
+                  class="text-danger"
+                  style="display: none"
+                  id="errorFrontCamera"
+                ></div>
               </div>
+              <!-- IMAGE LINK -->
               <div class="form-group">
                 <label>Image Link</label>
                 <input
@@ -168,7 +210,30 @@
                   class="form-control"
                   placeholder="Enter product image link"
                 />
+                <div
+                  class="text-danger"
+                  style="display: none"
+                  id="errorImageLink"
+                ></div>
               </div>
+              <!-- DESCRIPTION -->
+              <div class="form-group">
+                <label>Description</label>
+                <div>
+                  <textarea
+                    name=""
+                    id="description"
+                    cols="60"
+                    rows="5"
+                  ></textarea>
+                </div>
+                <div
+                  class="text-danger"
+                  style="display: none"
+                  id="errorDescription"
+                ></div>
+              </div>
+              <!-- TYPE -->
               <div class="form-group">
                 <label>Type</label>
                 <input
@@ -176,16 +241,16 @@
                   class="form-control"
                   placeholder="Enter product type"
                 />
-              </div>
-              <div class="form-group">
-                <label>Description</label>
-                <div>
-                  <textarea name="" id="description" cols="60" rows="5"></textarea>
-                </div>
+                <div
+                  class="text-danger"
+                  style="display: none"
+                  id="errorType"
+                ></div>
               </div>
             </div>
             <!-- Modal footer -->
-            <div class="modal-footer" id="cancel"></div>
+            <div class="modal-footer" id="cancel">
+            </div>
           </div>
         </div>
       </div>
@@ -223,8 +288,9 @@
       crossorigin="anonymous"
       referrerpolicy="no-referrer"
     ></script>
-    <script src="../asset/src/models/product.js"></script>
     <script src="../asset/src/service/api.js"></script>
-    <script src="js/manager.js"></script>
+    <script src="../asset/src/models/product.js"></script>
+    <script src="./js/validation.js"></script>
+    <script src="./js/manager.js"></script>
   </body>
 </html>

@@ -1,5 +1,6 @@
 //
 var api = new Service();
+var validation = new Validation();
 //
 function getEle(id) {
   return document.getElementById(id);
@@ -49,6 +50,7 @@ function renderUIManager(data) {
 }
 //thêm nút add product khi nhấn vào add product
 getEle("btnAddProduct").onclick = function () {
+  document.getElementsByClassName('modal-title')[0].innerHTML = 'Add Product';
   var buttonAdd = `<button class='btn btn-success'onclick ='addProduct()'>Add Product</button>`;
   document.getElementsByClassName("modal-footer")[0].innerHTML = buttonAdd;
 };
@@ -63,26 +65,101 @@ function addProduct() {
   var imageLink = getEle("imageLink").value;
   var description = getEle("description").value;
   var type = getEle("type").value;
-  var product = new Product(
-    "",
+  //flag
+  var isValid = true;
+  //validation tên sản phẩm
+  isValid &= validation.kiemTraRong(
     name,
-    price,
-    screen,
-    backCamera,
-    frontCamera,
-    imageLink,
-    description,
-    type
+    "errorName",
+    "(*) Vui lòng nhập tên sản phẩm"
   );
-  var promise = api.addProductApi(product);
-  promise
-    .then(function () {
-      getListProduct();
+  //validation price
+  isValid &=
+    validation.kiemTraRong(
+      price,
+      "errorPrice",
+      "(*) Vui lòng nhập giá sản phẩm"
+    ) &&
+    validation.checkPattern(
+      price,
+      "errorPrice",
+      "(*) Vui lòng nhập giá sản phẩm bằng chữ số",
+      /^[0-9]+$/
+    );
+  //validation screen
+  isValid &= validation.kiemTraRong(
+    screen,
+    "errorScreen",
+    "(*) Vui lòng nhập kích thước màn hình"
+  );
+  //validation backCamera
+  isValid &= validation.kiemTraRong(
+    backCamera,
+    "errorBackCamera",
+    "(*) Vui lòng nhập camera sau của sản phẩm"
+  );
+  //validation frontCamera
+  isValid &= validation.kiemTraRong(
+    frontCamera,
+    "errorFrontCamera",
+    "(*) Vui lòng nhập camera trước của sản phẩm"
+  );
+  //validation imageLink
+  isValid &= validation.kiemTraRong(
+    imageLink,
+    "errorImageLink",
+    "(*) Vui lòng nhập hình ảnh của sản phẩm"
+  );
+  //validation description
+  isValid &= validation.kiemTraRong(
+    description,
+    "errorDescription",
+    "(*) Vui lòng nhập mô tả của sản phẩm"
+  );
+  //validation type
+  isValid &= validation.kiemTraRong(
+    type,
+    "errorType",
+    "(*) Vui lòng nhập loại của sản phẩm"
+  );
+
+  //check flag validation
+  if (isValid) {
+    var product = new Product(
+      "",
+      name,
+      price,
+      screen,
+      backCamera,
+      frontCamera,
+      imageLink,
+      description,
+      type
+    );
+    if (confirm(`Are you sure to add the product?`)) {
+      var promise = api.addProductApi(product);
+      promise
+        .then(function () {
+          getListProduct();
+          document.getElementsByClassName("close")[0].click();
+          //reset data đã nhập trước đó
+          getEle("name").value = "";
+          getEle("price").value = "";
+          getEle("screen").value = "";
+          getEle("backCamera").value = "";
+          getEle("frontCamera").value = "";
+          getEle("imageLink").value = "";
+          getEle("description").value = "";
+          getEle("type").value = "";
+          
+        })
+        .catch(function (error) {
+          console.log(error);
+        });
+    } else {
       document.getElementsByClassName("close")[0].click();
-    })
-    .catch(function (error) {
-      console.log(error);
-    });
+    }
+  }
 }
 //
 function deleteProduct(id) {
@@ -130,29 +207,103 @@ function updateProduct(id) {
   var imageLink = getEle("imageLink").value;
   var description = getEle("description").value;
   var type = getEle("type").value;
-  var product = new Product(
-    id,
+  //flag
+  var isValid = true;
+  isValid &= validation.kiemTraRong(
     name,
-    price,
-    screen,
-    backCamera,
-    frontCamera,
-    imageLink,
-    description,
-    type
+    "errorName",
+    "(*) Vui lòng nhập tên sản phẩm"
   );
-  if (confirm(`Are you sure to update the product?`)) {
-    var promise = api.updateProductApi(product);
-    promise
-      .then(function () {
-        document.getElementsByClassName("close")[0].click();
-        getListProduct();
-      })
-      .catch(function (error) {
-        console.log(error);
-      });
-  } else {
-    document.getElementsByClassName("close")[0].click();
+  //validation price
+  isValid &=
+    validation.kiemTraRong(
+      price,
+      "errorPrice",
+      "(*) Vui lòng nhập giá sản phẩm"
+    ) &&
+    validation.checkPattern(
+      price,
+      "errorPrice",
+      "(*) Vui lòng nhập giá sản phẩm bằng chữ số",
+      /^[0-9]+$/
+    );
+  //validation screen
+  isValid &= validation.kiemTraRong(
+    screen,
+    "errorScreen",
+    "(*) Vui lòng nhập kích thước màn hình"
+  );
+  //validation backCamera
+  isValid &= validation.kiemTraRong(
+    backCamera,
+    "errorBackCamera",
+    "(*) Vui lòng nhập camera sau của sản phẩm"
+  );
+  //validation frontCamera
+  isValid &= validation.kiemTraRong(
+    frontCamera,
+    "errorFrontCamera",
+    "(*) Vui lòng nhập camera trước của sản phẩm"
+  );
+  //validation imageLink
+  isValid &= validation.kiemTraRong(
+    imageLink,
+    "errorImageLink",
+    "(*) Vui lòng nhập hình ảnh của sản phẩm"
+  );
+  //validation description
+  isValid &= validation.kiemTraRong(
+    description,
+    "errorDescription",
+    "(*) Vui lòng nhập mô tả của sản phẩm"
+  );
+  //validation type
+  isValid &= validation.kiemTraRong(
+    type,
+    "errorType",
+    "(*) Vui lòng nhập loại của sản phẩm"
+  );
+  if (isValid) {
+    var product = new Product(
+      id,
+      name,
+      price,
+      screen,
+      backCamera,
+      frontCamera,
+      imageLink,
+      description,
+      type
+    );
+    if (confirm(`Are you sure to update the product?`)) {
+      var promise = api.updateProductApi(product);
+      promise
+        .then(function () {
+          document.getElementsByClassName("close")[0].click();
+          getListProduct();
+          getEle("name").value = "";
+          getEle("price").value = "";
+          getEle("screen").value = "";
+          getEle("backCamera").value = "";
+          getEle("frontCamera").value = "";
+          getEle("imageLink").value = "";
+          getEle("description").value = "";
+          getEle("type").value = "";
+        })
+        .catch(function (error) {
+          console.log(error);
+        });
+    } else {
+      document.getElementsByClassName("close")[0].click();
+      getEle("name").value = "";
+      getEle("price").value = "";
+      getEle("screen").value = "";
+      getEle("backCamera").value = "";
+      getEle("frontCamera").value = "";
+      getEle("imageLink").value = "";
+      getEle("description").value = "";
+      getEle("type").value = "";
+    }
   }
 }
 //onchange getCatelogy
@@ -222,6 +373,7 @@ function searchProduct() {
     });
 }
 getEle("searchProduct").addEventListener("keyup", searchProduct);
+
 //Sort Product
 function sortProduct() {
   var sort = getEle("mySelect2").value;
@@ -231,7 +383,10 @@ function sortProduct() {
       .then(function (result) {
         for (var i = 0; i < result.data.length - 1; i++) {
           for (var j = i + 1; j < result.data.length; j++) {
-            if (result.data[i].price > result.data[j].price) {
+            if (
+              parseFloat(result.data[i].price) >
+              parseFloat(result.data[j].price)
+            ) {
               var temp = result.data[i];
               result.data[i] = result.data[j];
               result.data[j] = temp;
@@ -249,7 +404,10 @@ function sortProduct() {
       .then(function (result) {
         for (var i = 0; i < result.data.length - 1; i++) {
           for (var j = i + 1; j < result.data.length; j++) {
-            if (result.data[i].price < result.data[j].price) {
+            if (
+              parseFloat(result.data[i].price) <
+              parseFloat(result.data[j].price)
+            ) {
               var temp = result.data[i];
               result.data[i] = result.data[j];
               result.data[j] = temp;
@@ -265,3 +423,22 @@ function sortProduct() {
     getListProduct();
   }
 }
+//close
+getEle("close").onclick = function () {
+  getEle("errorName").style.display = "none";
+  getEle("errorPrice").style.display = "none";
+  getEle("errorScreen").style.display = "none";
+  getEle("errorBackCamera").style.display = "none";
+  getEle("errorFrontCamera").style.display = "none";
+  getEle("errorImageLink").style.display = "none";
+  getEle("errorDescription").style.display = "none";
+  getEle("errorType").style.display = "none";
+  getEle("name").value = "";
+  getEle("price").value = "";
+  getEle("screen").value = "";
+  getEle("backCamera").value = "";
+  getEle("frontCamera").value = "";
+  getEle("imageLink").value = "";
+  getEle("description").value = "";
+  getEle("type").value = "";
+};
