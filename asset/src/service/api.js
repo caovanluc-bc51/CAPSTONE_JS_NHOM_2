@@ -6,7 +6,6 @@ function Service() {
     });
     return promise;
   };
-
   this.addProductApi = function (product) {
     var promise = axios({
       url: "https://64b78ddb21b9aa6eb0785738.mockapi.io/product",
