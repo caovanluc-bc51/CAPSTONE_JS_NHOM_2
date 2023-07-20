@@ -2,4 +2,25 @@
   padding: 0;
   margin: 0;
   box-sizing: border-box;
+}
+
+.btnPhone-shadow {
+  background-color: #cee6e8;
+  color: #09838d;
+  display: flex;
+  padding: 6px 16px;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+  align-self: stretch;
+  width: 100%;
+  border: 1px solid #cee6e8;
+  outline: none;
+  border-radius: 5px;
+  transition: all 0.3s;
+}
+.btnPhone-shadow:hover {
+  border-color: #09838d;
+  background: transparent;
+  transition: all 0.3s;
 }/*# sourceMappingURL=main.css.map */
