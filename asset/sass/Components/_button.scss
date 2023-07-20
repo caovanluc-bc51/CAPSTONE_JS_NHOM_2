@@ -1,0 +1,21 @@
+.btnPhone-shadow {
+  background-color: $buttonCartColor;
+  color: $primaryColor;
+  display: flex;
+  padding: 6px 16px;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+  align-self: stretch;
+  width: 100%;
+  border: 1px solid $buttonCartColor;
+  outline: none;
+  border-radius: 5px;
+  transition: all 0.3s;
+
+  &:hover {
+    border-color: $primaryColor;
+    background: transparent;
+    transition: all 0.3s;
+  }
+}

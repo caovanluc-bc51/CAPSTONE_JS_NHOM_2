@@ -27,6 +27,7 @@
       <div class="container">
         <button
           class="navbar-toggler"
+          style="outline: none;"
           type="button"
           data-toggle="collapse"
           data-target="#navbarNav"
@@ -54,6 +55,7 @@
     </section>
 
     <section class="container">
+      <!-- list sản phẩm -->
       <div class="row" id="productList">
         <!-- <div class="col-12 col-md-6 col-lg-3 my-3">
           <div class="card cardPhone">
@@ -75,6 +77,109 @@
         </div> -->
       </div>
     </section>
+
+    <div
+      class="modal fade"
+      id="chiTietSP"
+      tabindex="-1"
+      aria-labelledby="productName"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="productName">Modal title</h5>
+            <button
+              type="button"
+              class="close"
+              id="btnClose"
+              data-dismiss="modal"
+              aria-label="Close"
+            >
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <div class="row px-5">
+              <div
+                class="col-12 col-sm-12 col-md-6 col-xl-6 p-0"
+                id="productImage"
+              >
+                <!-- <img class="img-fluid" src="../asset/img/product1.jpg" alt="" /> -->
+              </div>
+              <div class="col-12 col-sm-12 col-md-6 col-xl-6 p-0">
+                <h1 id="productPrice"></h1>
+                <div class="row">
+                  <div class="col-4">
+                    <span>Type: </span>
+                  </div>
+                  <div class="col-8">
+                    <span id="productType"></span>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-4">
+                    <span>Screen: </span>
+                  </div>
+                  <div class="col-8">
+                    <span id="productScreen"></span>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-4">
+                    <span>Back Camera: </span>
+                  </div>
+                  <div class="col-8">
+                    <span id="productBackCam"></span>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-4">
+                    <span>Front Camera: </span>
+                  </div>
+                  <div class="col-8">
+                    <span id="productFrontCam"></span>
+                  </div>
+                </div>
+                <div class="row mt-3">
+                  <div class="col-12">
+                    <span>Description: </span>
+                  </div>
+                  <div class="col-12">
+                    <span id="productDescription"></span>
+                  </div>
+                </div>
+                <div class="row mt-5">
+                  <div class="col-6">
+                    <input
+                      type="number"
+                      class="form-control"
+                      id="numberToBuy"
+                      value="1"
+                    />
+                  </div>
+                  <div class="col-6 px-0">
+                    <button class="btnPhone-shadow" type="button">
+                      <i class="fa-solid fa-shopping-cart"></i> Add to cart
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button
+              type="button"
+              class="btn btn-secondary"
+              data-dismiss="modal"
+            >
+              Close
+            </button>
+            <button type="button" class="btn btn-primary">Save changes</button>
+          </div>
+        </div>
+      </div>
+    </div>
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
     <script
@@ -91,6 +196,14 @@
       src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
       integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
       crossorigin="anonymous"
+    ></script>
+
+    <!-- cdn axios -->
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.4.0/axios.min.js"
+      integrity="sha512-uMtXmF28A2Ab/JJO2t/vYhlaa/3ahUOgj1Zf27M5rOo8/+fcTUVH0/E0ll68njmjrLqOBjXM3V9NiPFL5ywWPQ=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
     ></script>
 
     <script src="../asset/src/models/product.js"></script>
