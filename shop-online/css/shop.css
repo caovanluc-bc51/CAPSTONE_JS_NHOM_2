@@ -25,6 +25,195 @@
   transition: all 0.3s;
 }
 
+a {
+  text-decoration: none !important;
+}
+
+.bg-ddv {
+  --tw-bg-opacity: 1;
+  background-color: rgb(190 30 45/var(--tw-bg-opacity));
+}
+
+.w-full {
+  width: 100%;
+}
+
+.h-px {
+  height: 1px;
+}
+
+.my-2 {
+  margin-top: 0.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.text-left {
+  text-align: left;
+}
+
+.pt-5 {
+  padding-top: 1.25rem;
+}
+
+.bg-white {
+  --tw-bg-opacity: 1;
+  background-color: rgb(255 255 255/var(--tw-bg-opacity));
+}
+
+.border-gray-200 {
+  --tw-border-opacity: 1;
+  border-color: rgb(229 231 235/var(--tw-border-opacity));
+}
+
+.border-t {
+  border-top-width: 1px;
+}
+
+.justify-center {
+  justify-content: center;
+}
+
+.items-center {
+  align-items: center;
+}
+
+.flex-col {
+  flex-direction: column;
+}
+
+.flex {
+  display: flex;
+}
+
+.justify-start {
+  justify-content: flex-start;
+}
+
+.items-start {
+  align-items: flex-start;
+}
+
+.w-1\/4 {
+  width: 25%;
+}
+
+.text-ddv {
+  --tw-text-opacity: 1;
+  color: rgb(190 30 45/var(--tw-text-opacity));
+}
+
+.font-bold {
+  font-weight: 700;
+}
+
+.text-sm {
+  font-size: 14px;
+  line-height: 20px;
+}
+
+.text-black {
+  --tw-text-opacity: 1;
+  color: rgb(0 0 0/var(--tw-text-opacity));
+}
+
+.text-sm {
+  font-size: 14px;
+  line-height: 20px;
+}
+
+.hover\:text-ddv:hover {
+  --tw-text-opacity: 1;
+  color: rgb(190 30 45/var(--tw-text-opacity));
+}
+
+.items-center {
+  align-items: center;
+}
+
+.justify-between {
+  justify-content: space-between;
+}
+
+.text-14 {
+  font-size: 13.5px;
+  line-height: 20px;
+}
+
+.font-medium {
+  font-weight: 500;
+}
+
+.pl-4 {
+  padding-left: 1rem !important;
+}
+
+.justify-end {
+  justify-content: flex-end;
+}
+
+.text-link {
+  --tw-text-opacity: 1;
+  color: rgb(47 128 237/var(--tw-text-opacity));
+}
+
+.text-16 {
+  font-size: 16px;
+  line-height: 20px;
+}
+
+.text-black {
+  --tw-text-opacity: 1;
+  color: rgb(0 0 0/var(--tw-text-opacity));
+}
+
+.font-normal {
+  font-weight: 400;
+}
+
+.pl-2 {
+  padding-left: 0.5rem !important;
+}
+
+.page-header, p {
+  margin-bottom: 0 !important;
+}
+
+.py-1 {
+  padding-top: 0.25rem !important;
+  padding-bottom: 0.25rem !important;
+}
+
+.py-2 {
+  padding-top: 0.5rem !important;
+  padding-bottom: 0.5rem !important;
+}
+
+.gap-2 {
+  gap: 0.5rem;
+}
+
+.grid-cols-4 {
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+}
+
+.grid {
+  display: grid;
+}
+
+.col-span-1 {
+  grid-column: span 1/span 1;
+}
+
+.text-100 {
+  font-size: 20px;
+  margin: 20px 0;
+}
+
+.text-11 {
+  font-size: 11px;
+  line-height: 13px;
+}
+
 h2 {
   color: #09838d !important;
   margin-top: 20px;
