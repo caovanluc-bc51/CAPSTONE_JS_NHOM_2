@@ -214,6 +214,16 @@ a {
   line-height: 13px;
 }
 
+.navbar-light .navbar-nav .nav-link {
+  transition: all 0.3s;
+}
+.navbar-light .navbar-nav .nav-link:hover {
+  color: #09838d;
+}
+.navbar-light .navbar-nav .active > .nav-link {
+  color: #09838d !important;
+}
+
 h2 {
   color: #09838d !important;
   margin-top: 20px;
@@ -237,6 +247,10 @@ h2 {
   font-size: 18px;
   font-weight: 500;
   color: #b3b3b3;
+}
+
+.modal-footer .btn-primary {
+  background-color: #09838d;
 }
 
 @media screen and (min-width: 576px) {

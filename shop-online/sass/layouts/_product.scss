@@ -20,6 +20,12 @@
   }
 }
 
+.modal-footer {
+  .btn-primary {
+    background-color: $primaryColor;
+  }
+}
+
 @media screen and (min-width: 576px) {
   .modal-dialog {
     max-width: 1000px;
