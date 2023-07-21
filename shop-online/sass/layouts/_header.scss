@@ -1,3 +1,18 @@
+.navbar-light {
+  .navbar-nav {
+    .nav-link {
+      transition: all 0.3s;
+      &:hover {
+        color: $primaryColor;
+      }
+    }
+
+    .active > .nav-link {
+      color: $primaryColor !important;
+    }
+  }
+}
+
 h2 {
   @include titleH2(20px, 32px);
 }

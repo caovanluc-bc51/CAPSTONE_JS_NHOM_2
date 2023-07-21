@@ -23,20 +23,27 @@
     <link rel="stylesheet" href="css/shop.css" />
   </head>
   <body>
-    <header class="page-header flex h-[95px] w-full min-w-full items-center justify-center max-md:h-[60px]">
+    <!-- <header
+      class="page-header flex h-[95px] w-full min-w-full items-center justify-center max-md:h-[60px]"
+    >
       <div class="container">
-        <div class="w-full items-center py-2 max-md:grid max-md:h-[60px] max-md:grid-cols-8  max-md:justify-between  md:flex md:gap-x-8">
-          <div class="max-md:col-span-1 max-md:flex max-md:h-[50px] max-md:items-center max-md:justify-center md:w-1/5">
-            <a href="#" title="Di Động Việt - Hệ thống bán lẻ Điện thoại, Macbook, Phụ kiện chính hãng">
-              
+        <div
+          class="w-full items-center py-2 max-md:grid max-md:h-[60px] max-md:grid-cols-8  max-md:justify-between  md:flex md:gap-x-8"
+        >
+          <div
+            class="max-md:col-span-1 max-md:flex max-md:h-[50px] max-md:items-center max-md:justify-center md:w-1/5"
+          >
+            <a
+              href="#"
+              title="Di Động Việt - Hệ thống bán lẻ Điện thoại, Macbook, Phụ kiện chính hãng"
+            >
             </a>
           </div>
           <div></div>
           <div></div>
         </div>
       </div>
-
-    </header>
+    </header> -->
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
       <div class="container">
         <button
@@ -61,11 +68,31 @@
             </li>
           </ul>
         </div>
+        <form class="form-inline my-2 my-lg-0">
+          <button
+            class="btnPhone-shadow my-2 my-sm-0 p-2"
+            type="button"
+            data-toggle="modal"
+            data-target="#shoppingCart"
+          >
+            <i class="fa-solid fa-shopping-cart"></i>
+          </button>
+        </form>
       </div>
     </nav>
 
     <section class="container">
       <h2>CỬA HÀNG DI ĐỘNG CAPSTONE</h2>
+    </section>
+
+    <section class="container">
+      <div class="form-group">
+        <select id="category" onchange="searchProductByType()">
+          <option value="All">All</option>
+          <option value="Samsung">Samsung</option>
+          <option value="Iphone">Iphone</option>
+        </select>
+      </div>
     </section>
 
     <section class="container">
@@ -94,7 +121,7 @@
 
     <div
       class="modal fade"
-      id="chiTietSP"
+      id="productDetailPopup"
       tabindex="-1"
       aria-labelledby="productName"
       aria-hidden="true"
@@ -189,70 +216,168 @@
             >
               Close
             </button>
-            <button type="button" class="btn btn-primary">Save changes</button>
+            <button type="button" class="btn btn-primary">Add to cart</button>
           </div>
         </div>
       </div>
     </div>
-    <footer class="flex w-full flex-col items-center justify-center border-t border-gray-200 bg-white pt-5 text-left max-md:hidden">
+
+    <div
+      class="modal fade"
+      id="shoppingCart"
+      tabindex="-1"
+      aria-labelledby="productName"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="productName">Shopping Cart</h5>
+            <button
+              type="button"
+              class="close"
+              id="btnClose"
+              data-dismiss="modal"
+              aria-label="Close"
+            >
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body"></div>
+          <div class="modal-footer">
+            <button
+              type="button"
+              class="btn btn-secondary"
+              data-dismiss="modal"
+            >
+              Close
+            </button>
+            <!-- <button type="button" class="btn btn-primary">Add to cart</button> -->
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <footer
+      class="flex w-full flex-col items-center justify-center border-t border-gray-200 bg-white pt-5 text-left max-md:hidden"
+    >
       <div class="container">
         <div class="flex w-full items-start justify-start">
           <div class="w-1/4">
             <div class="flex flex-col">
               <p class="my-2 text-sm font-bold text-ddv">Hỗ trợ khách hàng</p>
-              <a title="Danh sách cửa hàng" class="my-1 text-sm font-normal text-black hover:text-ddv" href="#">Danh sách cửa hàng</a>
-              <a title="Mua hàng trả góp" class="my-1 text-sm font-normal text-black hover:text-ddv" href="#">Mua hàng trả góp</a>
-              <a class="my-1 text-sm font-normal text-black hover:text-ddv" href="#">Tra cứu điểm thành viên</a>
-              <a title="Tuyển dụng mới nhất" class="my-1 text-sm font-normal text-black hover:text-ddv" href="#">Tuyển dụng mới nhất</a>
+              <a
+                title="Danh sách cửa hàng"
+                class="my-1 text-sm font-normal text-black hover:text-ddv"
+                href="#"
+                >Danh sách cửa hàng</a
+              >
+              <a
+                title="Mua hàng trả góp"
+                class="my-1 text-sm font-normal text-black hover:text-ddv"
+                href="#"
+                >Mua hàng trả góp</a
+              >
+              <a
+                class="my-1 text-sm font-normal text-black hover:text-ddv"
+                href="#"
+                >Tra cứu điểm thành viên</a
+              >
+              <a
+                title="Tuyển dụng mới nhất"
+                class="my-1 text-sm font-normal text-black hover:text-ddv"
+                href="#"
+                >Tuyển dụng mới nhất</a
+              >
             </div>
           </div>
           <div class="w-1/4">
             <div class="flex flex-col">
               <p class="my-2 text-sm font-bold text-ddv">Chính sách</p>
-              <a title="Danh sách cửa hàng" class="my-1 text-sm font-normal text-black hover:text-ddv" href="#">Chính sách bảo hành</a>
-              <a title="Mua hàng trả góp" class="my-1 text-sm font-normal text-black hover:text-ddv" href="#">Chính sách đổi trả</a>
-              <a title="Mua hàng trả góp" class="my-1 text-sm font-normal text-black hover:text-ddv" href="#">Chính sách bán hàng</a>
-              <a title="Mua hàng trả góp" class="my-1 text-sm font-normal text-black hover:text-ddv" href="#">Chính sách sử dụng</a>
+              <a
+                title="Danh sách cửa hàng"
+                class="my-1 text-sm font-normal text-black hover:text-ddv"
+                href="#"
+                >Chính sách bảo hành</a
+              >
+              <a
+                title="Mua hàng trả góp"
+                class="my-1 text-sm font-normal text-black hover:text-ddv"
+                href="#"
+                >Chính sách đổi trả</a
+              >
+              <a
+                title="Mua hàng trả góp"
+                class="my-1 text-sm font-normal text-black hover:text-ddv"
+                href="#"
+                >Chính sách bán hàng</a
+              >
+              <a
+                title="Mua hàng trả góp"
+                class="my-1 text-sm font-normal text-black hover:text-ddv"
+                href="#"
+                >Chính sách sử dụng</a
+              >
             </div>
           </div>
           <div class="w-1/4">
             <div class="flex flex-col" style="width: 100%;">
               <p class="my-2 text-sm font-bold text-ddv">Liên hệ</p>
               <div class="flex flex-col" style="width: 100%;">
-                <div class="flex  items-center justify-between py-1" style="width:90%">
+                <div
+                  class="flex  items-center justify-between py-1"
+                  style="width:90%"
+                >
                   <p class="text-14 font-medium">Kỹ thuật:</p>
                   <div class="flex items-center justify-end pl-4">
                     <p class=" text-16 font-bold text-link ">
                       <a href="tel:+1900">1900.1000</a>
                     </p>
-                    <p class="pl-2 text-14 font-normal text-black">(08:30 – 21:30)</p>
+                    <p class="pl-2 text-14 font-normal text-black">
+                      (08:30 – 21:30)
+                    </p>
                   </div>
                 </div>
-                <div class="flex  items-center justify-between py-1" style="width:90%">
+                <div
+                  class="flex  items-center justify-between py-1"
+                  style="width:90%"
+                >
                   <p class="text-14 font-medium">Bảo hành:</p>
                   <div class="flex items-center justify-end pl-4">
                     <p class=" text-16 font-bold text-link ">
                       <a href="tel:+1900">1900.1000</a>
                     </p>
-                    <p class="pl-2 text-14 font-normal text-black">(09:00 – 21:00)</p>
+                    <p class="pl-2 text-14 font-normal text-black">
+                      (09:00 – 21:00)
+                    </p>
                   </div>
                 </div>
-                <div class="flex  items-center justify-between py-1" style="width:90%">
+                <div
+                  class="flex  items-center justify-between py-1"
+                  style="width:90%"
+                >
                   <p class="text-14 font-medium">Góp ý:</p>
                   <div class="flex items-center justify-end pl-4">
                     <p class=" text-16 font-bold text-link ">
                       <a href="tel:+1900">1900.1000</a>
                     </p>
-                    <p class="pl-2 text-14 font-normal text-black">(08:30 – 21:30)</p>
+                    <p class="pl-2 text-14 font-normal text-black">
+                      (08:30 – 21:30)
+                    </p>
                   </div>
                 </div>
-                <div class="flex  items-center justify-between py-1" style="width:90%">
+                <div
+                  class="flex  items-center justify-between py-1"
+                  style="width:90%"
+                >
                   <p class="text-14 font-medium">Gọi mua:</p>
                   <div class="flex items-center justify-end pl-4">
                     <p class=" text-16 font-bold text-link ">
                       <a href="tel:+1900">1900.1000</a>
                     </p>
-                    <p class="pl-2 text-14 font-normal text-black">(07:30 – 21:30)</p>
+                    <p class="pl-2 text-14 font-normal text-black">
+                      (07:30 – 21:30)
+                    </p>
                   </div>
                 </div>
               </div>
@@ -260,27 +385,46 @@
           </div>
           <div class="w-1/4">
             <div class="flex flex-col ">
-              <div class="grid w-full grid-cols-4 items-center justify-between gap-2 py-2">
-                <a aria-label="facebook" href="https://www.facebook.com/" class="col-span-1 flex items-center justify-start">
+              <div
+                class="grid w-full grid-cols-4 items-center justify-between gap-2 py-2"
+              >
+                <a
+                  aria-label="facebook"
+                  href="https://www.facebook.com/"
+                  class="col-span-1 flex items-center justify-start"
+                >
                   <i class="fa-brands fa-facebook"></i>
                   <p class="pl-2 text-11 text-link">facebook</p>
                 </a>
-                <a aria-label="facebook" href="https://www.facebook.com/" class="col-span-1 flex items-center justify-start">
+                <a
+                  aria-label="facebook"
+                  href="https://www.facebook.com/"
+                  class="col-span-1 flex items-center justify-start"
+                >
                   <i class="fa-brands fa-facebook"></i>
                   <p class="pl-2 text-11 text-link">Youtube</p>
-
                 </a>
-                <a aria-label="facebook" href="https://www.facebook.com/" class="col-span-1 flex items-center justify-start">
+                <a
+                  aria-label="facebook"
+                  href="https://www.facebook.com/"
+                  class="col-span-1 flex items-center justify-start"
+                >
                   <i class="fa-brands fa-facebook"></i>
                   <p class="pl-2 text-11 text-link">Tiktok</p>
                 </a>
-                <a aria-label="facebook" href="https://www.facebook.com/" class="col-span-1 flex items-center justify-start">
+                <a
+                  aria-label="facebook"
+                  href="https://www.facebook.com/"
+                  class="col-span-1 flex items-center justify-start"
+                >
                   <i class="fa-brands fa-facebook"></i>
                   <p class="pl-2 text-11 text-link">Zalo</p>
                 </a>
               </div>
               <p class="py-2 text-100 text-black">Cửa Hàng Di Động Capstone</p>
-              <p class="text-black" style="color: red; margin-left: 30px;">Nhà Bán Lẻ Số 1 Việt Nam</p>
+              <p class="text-black" style="color: red; margin-left: 30px;">
+                Nhà Bán Lẻ Số 1 Việt Nam
+              </p>
             </div>
           </div>
         </div>
