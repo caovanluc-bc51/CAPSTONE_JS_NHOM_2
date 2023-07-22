@@ -52,6 +52,9 @@ function renderUIManager(data) {
 //validation check 2 trường hợp sẽ hiển thị thông báo ngay khi người dùng nhập luôn không đợi người dùng nhấn addProduct
 //ADD CASE 2
 getEle("btnAddProduct").onclick = function () {
+  resetInput();
+  resetError();
+
   document.getElementsByClassName("modal-title")[0].innerHTML = "Add Product";
   var buttonAdd = `<button class='btn btn-success'id='addProduct' onclick ='addProduct()'>Add Product</button>`;
   document.getElementsByClassName("modal-footer")[0].innerHTML = buttonAdd;
@@ -117,8 +120,8 @@ getEle("btnAddProduct").onclick = function () {
       "(*) Vui lòng nhập mô tả của sản phẩm"
     );
     //validation type
-    isValid &= validation.kiemTraRong(
-      type,
+    isValid &= validation.checkSelectTypeOfProduct(
+      "type",
       "errorType",
       "(*) Vui lòng nhập loại của sản phẩm"
     );
@@ -232,8 +235,8 @@ function addProduct() {
     "(*) Vui lòng nhập mô tả của sản phẩm"
   );
   //validation type
-  isValid &= validation.kiemTraRong(
-    type,
+  isValid &= validation.checkSelectTypeOfProduct(
+    "type",
     "errorType",
     "(*) Vui lòng nhập loại của sản phẩm"
   );
@@ -373,8 +376,8 @@ function editProduct(id) {
       "(*) Vui lòng nhập mô tả của sản phẩm"
     );
     //validation type
-    isValid &= validation.kiemTraRong(
-      type,
+    isValid &= validation.checkSelectTypeOfProduct(
+      "type",
       "errorType",
       "(*) Vui lòng nhập loại của sản phẩm"
     );
@@ -486,8 +489,8 @@ function updateProduct(id) {
     "(*) Vui lòng nhập mô tả của sản phẩm"
   );
   //validation type
-  isValid &= validation.kiemTraRong(
-    type,
+  isValid &= validation.checkSelectTypeOfProduct(
+    "type",
     "errorType",
     "(*) Vui lòng nhập loại của sản phẩm"
   );
@@ -655,15 +658,27 @@ function sortProduct() {
   }
 }
 //close
-getEle("close").onclick = function () {
-  getEle("errorName").style.display = "none";
-  getEle("errorPrice").style.display = "none";
-  getEle("errorScreen").style.display = "none";
-  getEle("errorBackCamera").style.display = "none";
-  getEle("errorFrontCamera").style.display = "none";
-  getEle("errorImageLink").style.display = "none";
-  getEle("errorDescription").style.display = "none";
-  getEle("errorType").style.display = "none";
+// getEle("close").onclick = function () {
+//   getEle("errorName").style.display = "none";
+//   getEle("errorPrice").style.display = "none";
+//   getEle("errorScreen").style.display = "none";
+//   getEle("errorBackCamera").style.display = "none";
+//   getEle("errorFrontCamera").style.display = "none";
+//   getEle("errorImageLink").style.display = "none";
+//   getEle("errorDescription").style.display = "none";
+//   getEle("errorType").style.display = "none";
+//   getEle("name").value = "";
+//   getEle("price").value = "";
+//   getEle("screen").value = "";
+//   getEle("backCamera").value = "";
+//   getEle("frontCamera").value = "";
+//   getEle("imageLink").value = "";
+//   getEle("description").value = "";
+//   getEle("type").value = "";
+// };
+
+// clean dữ liệu khi bấm lại nút Add Product
+function resetInput() {
   getEle("name").value = "";
   getEle("price").value = "";
   getEle("screen").value = "";
@@ -671,5 +686,16 @@ getEle("close").onclick = function () {
   getEle("frontCamera").value = "";
   getEle("imageLink").value = "";
   getEle("description").value = "";
-  getEle("type").value = "";
-};
+  getEle("type").selectedIndex = 0;
+}
+
+function resetError() {
+  getEle("errorName").innerHTML = "";
+  getEle("errorPrice").innerHTML = "";
+  getEle("errorScreen").innerHTML = "";
+  getEle("errorBackCamera").innerHTML = "";
+  getEle("errorFrontCamera").innerHTML = "";
+  getEle("errorImageLink").innerHTML = "";
+  getEle("errorDescription").innerHTML = "";
+  getEle("errorType").innerHTML = "";
+}

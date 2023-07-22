@@ -11,6 +11,7 @@ function Validation() {
     getEle(errorId).style.display = "none";
     return true;
   };
+
   this.checkPattern = function (value, errorId, mess, letter) {
     if (value.match(letter)) {
       //true
@@ -21,6 +22,18 @@ function Validation() {
     //false
     getEle(errorId).innerHTML = mess;
     getEle(errorId).style.display = "block";
+    return false;
+  };
+
+  this.checkSelectTypeOfProduct = function (idSelect, errorID, mess) {
+    var selectType = getEle(idSelect);
+    if (selectType.selectedIndex !== 0) {
+      getEle(errorID).innerHTML = "";
+      getEle(errorID).style.display = "none";
+      return true;
+    }
+    getEle(errorID).innerHTML = mess;
+    getEle(errorID).style.display = "block";
     return false;
   };
 }
