@@ -125,7 +125,12 @@
             <!-- Modal Header -->
             <div class="modal-header">
               <h4 class="modal-title">Add Product</h4>
-              <button type="button" class="close" data-dismiss="modal" id="close">
+              <button
+                type="button"
+                class="close"
+                data-dismiss="modal"
+                id="close"
+              >
                 &times;
               </button>
             </div>
@@ -236,11 +241,16 @@
               <!-- TYPE -->
               <div class="form-group">
                 <label>Type</label>
-                <input
+                <!-- <input
                   id="type"
                   class="form-control"
                   placeholder="Enter product type"
-                />
+                /> -->
+                <select id="type" class="form-control">
+                  <option value="0">Select product type</option>
+                  <option value="Samsung">Samsung</option>
+                  <option value="Iphone">Iphone</option>
+                </select>
                 <div
                   class="text-danger"
                   style="display: none"
@@ -249,8 +259,7 @@
               </div>
             </div>
             <!-- Modal footer -->
-            <div class="modal-footer" id="cancel">
-            </div>
+            <div class="modal-footer" id="cancel"></div>
           </div>
         </div>
       </div>
