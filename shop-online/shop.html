@@ -87,7 +87,11 @@
 
     <section class="container">
       <div class="form-group">
-        <select id="category" onchange="searchProductByType()">
+        <select
+          id="category"
+          class="col-4 form-control"
+          onchange="searchProductByType()"
+        >
           <option value="All">All</option>
           <option value="Samsung">Samsung</option>
           <option value="Iphone">Iphone</option>
@@ -95,7 +99,8 @@
       </div>
     </section>
 
-    <section class="container">
+    <!-- list product -->
+    <section class="container ">
       <!-- list sản phẩm -->
       <div class="row" id="productList">
         <!-- <div class="col-12 col-md-6 col-lg-3 my-3">
@@ -119,6 +124,7 @@
       </div>
     </section>
 
+    <!-- product detail, add to cart -->
     <div
       class="modal fade"
       id="productDetailPopup"
@@ -145,9 +151,7 @@
               <div
                 class="col-12 col-sm-12 col-md-6 col-xl-6 p-0"
                 id="productImage"
-              >
-                <!-- <img class="img-fluid" src="../asset/img/product1.jpg" alt="" /> -->
-              </div>
+              ></div>
               <div class="col-12 col-sm-12 col-md-6 col-xl-6 p-0">
                 <h1 id="productPrice"></h1>
                 <div class="row">
@@ -199,11 +203,6 @@
                       value="1"
                     />
                   </div>
-                  <div class="col-6 px-0">
-                    <button class="btnPhone-shadow" type="button">
-                      <i class="fa-solid fa-shopping-cart"></i> Add to cart
-                    </button>
-                  </div>
                 </div>
               </div>
             </div>
@@ -216,12 +215,15 @@
             >
               Close
             </button>
-            <button type="button" class="btn btn-primary">Add to cart</button>
+            <button type="button" class="btn btn-primary" id="addToCart">
+              Add to cart
+            </button>
           </div>
         </div>
       </div>
     </div>
 
+    <!-- shopping cart -->
     <div
       class="modal fade"
       id="shoppingCart"
@@ -232,7 +234,7 @@
       <div class="modal-dialog">
         <div class="modal-content">
           <div class="modal-header">
-            <h5 class="modal-title" id="productName">Shopping Cart</h5>
+            <h5 class="modal-title" id="productName">SHOPPING CART</h5>
             <button
               type="button"
               class="close"
@@ -243,7 +245,19 @@
               <span aria-hidden="true">&times;</span>
             </button>
           </div>
-          <div class="modal-body"></div>
+          <div class="modal-body">
+            <table class="table table-bordered">
+              <thead align="center">
+                <th width="100px">Product</th>
+                <th>Name</th>
+                <th width="100px">Price</th>
+                <th width="100px">Quantity</th>
+                <th width="100px">Total</th>
+                <th width="10px">Action</th>
+              </thead>
+              <tbody id="tblListShoppingCart"></tbody>
+            </table>
+          </div>
           <div class="modal-footer">
             <button
               type="button"
@@ -460,5 +474,8 @@
     <script src="../asset/src/models/product.js"></script>
     <script src="../asset/src/service/api.js"></script>
     <script src="js/shop.js"></script>
+    <script src="js/cart.js"></script>
+    <script src="js/listCart.js"></script>
+    <script src="js/shopping-cart.js"></script>
   </body>
 </html>
