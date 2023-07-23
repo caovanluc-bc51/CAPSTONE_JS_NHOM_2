@@ -61,6 +61,7 @@ function productInfo() {
     getEle("numberToBuy").style.borderColor = "#ced4da";
     var cartItem = new Cart(id, img, name, price, quantity);
     cartItem.totalProduct();
+    console.log(cartItem);
     return cartItem;
   }
   return null;
