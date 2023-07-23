@@ -7,9 +7,9 @@ function ListCart() {
 
   this.findRow = function (id) {
     var index = -1;
-    for (var i = 0; this.arr.length; i++) {
+    for (var i = 0; i < this.arr.length; i++) {
       var product = this.arr[i];
-      if (product.id === id) {
+      if (product.id == id) {
         index = i;
         break;
       }
@@ -24,29 +24,32 @@ function ListCart() {
     }
   };
 
-  this.updateQuantity = function (product) {
-    var index = this.findRow(product.id);
+  this.updateQuantity = function (id, newQuantity) {
+    var index = this.findRow(id);
     if (index !== -1) {
-      this.arr[index].quantity += newQuantity;
+      this.arr[index].quantity += parseFloat(newQuantity);
+      this.arr[index].total = this.arr[index].quantity * this.arr[index].price;
     }
   };
 
-  this.upDownQuantity = function (product) {
-    var index = this.findRow(product.id);
+  this.upDownQuantity = function (id, newQuantity) {
+    var index = this.findRow(id);
     if (index !== -1) {
-      this.arr[index] = product;
+      this.arr[index].quantity = newQuantity;
+      this.arr[index].total = newQuantity * this.arr[index].price;
     }
   };
 
-  this.checkProductCart = function (product) {
-    var index = this.findRow(product.id);
+  this.checkProductCart = function (id) {
+    var index = this.findRow(id);
+    console.log(index);
     if (index !== -1) {
       return true;
     }
     return false;
   };
 
-  this.deleteOutOfCart = function (id) {
+  this.deleteCartItem = function (id) {
     var index = this.findRow(id);
     if (index !== -1) {
       this.arr.splice(index, 1);
