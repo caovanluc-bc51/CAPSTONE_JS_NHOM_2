@@ -61,56 +61,64 @@ function productInfo() {
     getEle("numberToBuy").style.borderColor = "#ced4da";
     var cartItem = new Cart(id, img, name, price, quantity);
     cartItem.totalProduct();
+    console.log(cartItem);
     return cartItem;
   }
   return null;
 }
 
 getEle("addToCart").onclick = function () {
-  //   if (listCart.checkProductCart(listCart.arr) === true) {
-  //     listCart.updateQuantity(listCart.arr);
+  var productId = getEle("productID").innerHTML;
+  if (listCart.checkProductCart(productId)) {
+    var newQuantity = getEle("numberToBuy").value;
+    listCart.updateQuantity(productId, newQuantity);
 
-  //     renderProductCartUI(listCart.arr);
-  //     setLocalStorage();
-  //   } else {
-  //     var lstCart = productInfo();
-  //     if (lstCart) {
-  //       listCart.addToCart(lstCart);
-
-  //       renderProductCartUI(listCart.arr);
-  //       setLocalStorage();
-  //     }
-
-  var lstCart = productInfo();
-  if (lstCart) {
-    listCart.addToCart(lstCart);
-
-    renderProductCartUI(listCart.arr);
     setLocalStorage();
+    renderProductCartUI(listCart.arr);
+  } else {
+    var lstCart = productInfo();
+    if (lstCart) {
+      listCart.addToCart(lstCart);
+
+      renderProductCartUI(listCart.arr);
+      setLocalStorage();
+    }
   }
 };
 
 function deleteProductItem(id) {
-  listCart.deleteOutOfCart(id);
+  listCart.deleteCartItem(id);
+
   renderProductCartUI(listCart.arr);
   setLocalStorage();
 }
 
 function upQuantity(id) {
-  var quantity = parseFloat(getEle("cartQuantity").innerHTML);
+  var quantity = 0;
+  quantity = parseFloat(getEle("cartQuantity").innerHTML);
   quantity++;
   getEle("cartQuantity").innerHTML = quantity;
 
-  listCart.upDownQuantity();
-  renderTable(DSNhanVien.arrNV);
+  // console.log(id);
+  listCart.upDownQuantity(id, quantity);
+
   setLocalStorage();
+  renderProductCartUI(listCart.arr);
+  quantity = 0;
 }
 
 function downQuantity(id) {
-  var quantity = parseFloat(getEle("cartQuantity").innerHTML);
+  var quantity = 0;
+  quantity = parseFloat(getEle("cartQuantity").innerHTML);
   quantity--;
   if (quantity < 0) {
     quantity = 1;
   }
   getEle("cartQuantity").innerHTML = quantity;
+
+  listCart.upDownQuantity(id, quantity);
+
+  setLocalStorage();
+  renderProductCartUI(listCart.arr);
+  quantity = 0;
 }
