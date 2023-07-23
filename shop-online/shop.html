@@ -135,6 +135,7 @@
       <div class="modal-dialog">
         <div class="modal-content">
           <div class="modal-header">
+            <span id="productID" style="display: none;"></span>
             <h5 class="modal-title" id="productName">Modal title</h5>
             <button
               type="button"
@@ -195,13 +196,22 @@
                   </div>
                 </div>
                 <div class="row mt-5">
-                  <div class="col-6">
+                  <div
+                    class="col-6 d-flex align-items-center justify-content-center"
+                  >
+                    <div class="changeNumber" onclick="minus()">
+                      <i class="fa-solid fa-minus"></i>
+                    </div>
                     <input
                       type="number"
-                      class="form-control"
+                      class="number"
                       id="numberToBuy"
                       value="1"
+                      min="0"
                     />
+                    <div class="changeNumber" onclick="plus()">
+                      <i class="fa-solid fa-plus"></i>
+                    </div>
                   </div>
                 </div>
               </div>
@@ -246,12 +256,12 @@
             </button>
           </div>
           <div class="modal-body">
-            <table class="table table-bordered">
+            <table class="table">
               <thead align="center">
                 <th width="100px">Product</th>
                 <th>Name</th>
                 <th width="100px">Price</th>
-                <th width="100px">Quantity</th>
+                <th width="200px">Quantity</th>
                 <th width="100px">Total</th>
                 <th width="10px">Action</th>
               </thead>
@@ -473,9 +483,9 @@
 
     <script src="../asset/src/models/product.js"></script>
     <script src="../asset/src/service/api.js"></script>
-    <script src="js/shop.js"></script>
-    <script src="js/cart.js"></script>
-    <script src="js/listCart.js"></script>
-    <script src="js/shopping-cart.js"></script>
+    <script src="js/models/cart.js"></script>
+    <script src="js/models/listCart.js"></script>
+    <script src="js/controllers/shop.js"></script>
+    <script src="js/controllers/shopping-cart.js"></script>
   </body>
 </html>

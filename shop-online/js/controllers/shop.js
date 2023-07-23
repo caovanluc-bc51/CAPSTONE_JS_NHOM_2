@@ -46,9 +46,11 @@ function renderUI(data) {
 }
 
 function productDetail(idSP) {
+  getEle("numberToBuy").value = 1;
   var promise = api.getDetailProductByID(idSP);
   promise
     .then(function (result) {
+      getEle("productID").innerHTML = result.data.id;
       getEle("productName").innerHTML = result.data.name;
       getEle(
         "productImage"
@@ -86,4 +88,19 @@ function searchProductByType() {
     .catch(function (error) {
       console.log(error);
     });
+}
+
+function plus() {
+  var quantity = parseFloat(getEle("numberToBuy").value);
+  quantity += 1;
+  getEle("numberToBuy").value = quantity;
+}
+
+function minus() {
+  var quantity = parseFloat(getEle("numberToBuy").value);
+  quantity -= 1;
+  if (quantity <= 0) {
+    quantity = 0;
+  }
+  getEle("numberToBuy").value = quantity;
 }

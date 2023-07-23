@@ -253,6 +253,41 @@ h2 {
   background-color: #09838d;
 }
 
+.changeNumber, .quantity .changeNumberSmall, .quantity #cartQuantity {
+  width: 38px;
+  height: 38px;
+  line-height: 38px;
+  text-align: center;
+  border: 1px solid #09838d;
+  background-color: #09838d;
+  color: #fff;
+}
+
+.number {
+  width: 50px;
+  height: 38px;
+  line-height: 38px;
+  text-align: center;
+  border: 1px solid #ced4da;
+}
+
+.quantity {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.quantity .changeNumberSmall, .quantity #cartQuantity {
+  width: 30px;
+  height: 30px;
+  line-height: 30px;
+  font-style: 14px;
+}
+.quantity #cartQuantity {
+  background-color: transparent;
+  color: #212529;
+  border: none;
+}
+
 @media screen and (min-width: 576px) {
   .modal-dialog {
     max-width: 1000px;

@@ -1,4 +1,5 @@
-function Cart(_img, _name, _price, _quantity) {
+function Cart(_id, _img, _name, _price, _quantity) {
+  this.id = _id;
   this.img = _img;
   this.name = _name;
   this.price = _price;
