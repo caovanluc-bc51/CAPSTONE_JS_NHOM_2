@@ -1,5 +1,5 @@
 function Validation() {
-  this.kiemTraRong = function (value, errorId, mess) {
+  this.checkEmpty = function (value, errorId, mess) {
     if (value === "") {
       //show error để thông báo
       getEle(errorId).innerHTML = mess;
@@ -24,16 +24,33 @@ function Validation() {
     getEle(errorId).style.display = "block";
     return false;
   };
-
-  this.checkSelectTypeOfProduct = function (idSelect, errorID, mess) {
-    var selectType = getEle(idSelect);
-    if (selectType.selectedIndex !== 0) {
-      getEle(errorID).innerHTML = "";
-      getEle(errorID).style.display = "none";
+  this.checkType = function (value, errorId, mess) {
+    if (value === "Iphone" || value === "Samsung") {
+      getEle(errorId).innerHTML = "";
+      getEle(errorId).style.display = "none";
       return true;
     }
-    getEle(errorID).innerHTML = mess;
-    getEle(errorID).style.display = "block";
+
+    getEle(errorId).innerHTML = mess;
+    getEle(errorId).style.display = "block";
     return false;
+  };
+  this.checkExistAccount = function (value, errorId, mess, listProduct) {
+    var isExist = false;
+    for (var i = 0; i < listProduct.length; i++) {
+      var product = listProduct[i];
+      if (product.name == value) {
+        isExist = true;
+        break;
+      }
+    }
+    if (isExist) {
+      getEle(errorId).innerHTML = mess;
+      getEle(errorId).style.display = "block";
+      return false;
+    }
+    getEle(errorId).innerHTML = "";
+    getEle(errorId).style.display = "none";
+    return true;
   };
 }
