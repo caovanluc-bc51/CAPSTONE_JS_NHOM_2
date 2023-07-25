@@ -37,7 +37,7 @@ function renderProductCartUI(data) {
         </td>
         <td id="total" align="right">$${product.total}</td>
         <td>
-          <button class="btn btn-danger" deleteProductItem('${product.id}')>
+          <button class="btn btn-danger" onclick="deleteProductItem('${product.id}')">
             <i class="fa-solid fa-trash-can"></i>
           </button>
         </td>
@@ -61,7 +61,7 @@ function productInfo() {
     getEle("numberToBuy").style.borderColor = "#ced4da";
     var cartItem = new Cart(id, img, name, price, quantity);
     cartItem.totalProduct();
-    console.log(cartItem);
+    // console.log(cartItem);
     return cartItem;
   }
   return null;
@@ -87,20 +87,21 @@ getEle("addToCart").onclick = function () {
 };
 
 function deleteProductItem(id) {
+  console.log(id);
   listCart.deleteCartItem(id);
 
-  renderProductCartUI(listCart.arr);
   setLocalStorage();
+  renderProductCartUI(listCart.arr);
 }
 
 function upQuantity(id) {
-  var quantity = 0;
-  quantity = parseFloat(getEle("cartQuantity").innerHTML);
-  quantity++;
-  getEle("cartQuantity").innerHTML = quantity;
+  var quantityUp = 0;
+  quantityUp = parseFloat(getEle("cartQuantity").innerHTML);
+  quantityUp++;
+  getEle("cartQuantity").innerHTML = quantityUp;
 
   // console.log(id);
-  listCart.upDownQuantity(id, quantity);
+  listCart.upDownQuantity(id, quantityUp);
 
   setLocalStorage();
   renderProductCartUI(listCart.arr);
@@ -108,15 +109,15 @@ function upQuantity(id) {
 }
 
 function downQuantity(id) {
-  var quantity = 0;
-  quantity = parseFloat(getEle("cartQuantity").innerHTML);
-  quantity--;
-  if (quantity < 0) {
-    quantity = 1;
+  var quantityDown = 0;
+  quantityDown = parseFloat(getEle("cartQuantity").innerHTML);
+  quantityDown--;
+  if (quantityDown < 0) {
+    quantityDown = 1;
   }
-  getEle("cartQuantity").innerHTML = quantity;
+  getEle("cartQuantity").innerHTML = quantityDown;
 
-  listCart.upDownQuantity(id, quantity);
+  listCart.upDownQuantity(id, quantityDown);
 
   setLocalStorage();
   renderProductCartUI(listCart.arr);
