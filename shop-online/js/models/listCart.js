@@ -55,4 +55,8 @@ function ListCart() {
       this.arr.splice(index, 1);
     }
   };
+
+  this.deleteAllCartItem = function (listCart) {
+    listCart.splice(0, listCart.length);
+  };
 }

@@ -105,7 +105,6 @@ function upQuantity(id) {
 
   setLocalStorage();
   renderProductCartUI(listCart.arr);
-  quantity = 0;
 }
 
 function downQuantity(id) {
@@ -121,5 +120,11 @@ function downQuantity(id) {
 
   setLocalStorage();
   renderProductCartUI(listCart.arr);
-  quantity = 0;
 }
+
+getEle("payment").onclick = function () {
+  listCart.deleteAllCartItem(listCart.arr);
+
+  setLocalStorage();
+  renderProductCartUI(listCart.arr);
+};
