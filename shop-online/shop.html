@@ -135,6 +135,7 @@
       <div class="modal-dialog">
         <div class="modal-content">
           <div class="modal-header">
+            <span id="productID" style="display: none;"></span>
             <h5 class="modal-title" id="productName">Modal title</h5>
             <button
               type="button"
@@ -195,13 +196,22 @@
                   </div>
                 </div>
                 <div class="row mt-5">
-                  <div class="col-6">
+                  <div
+                    class="col-6 d-flex align-items-center justify-content-center"
+                  >
+                    <div class="changeNumber" onclick="minus()">
+                      <i class="fa-solid fa-minus"></i>
+                    </div>
                     <input
                       type="number"
-                      class="form-control"
+                      class="number"
                       id="numberToBuy"
                       value="1"
+                      min="0"
                     />
+                    <div class="changeNumber" onclick="plus()">
+                      <i class="fa-solid fa-plus"></i>
+                    </div>
                   </div>
                 </div>
               </div>
@@ -246,12 +256,12 @@
             </button>
           </div>
           <div class="modal-body">
-            <table class="table table-bordered">
+            <table class="table">
               <thead align="center">
                 <th width="100px">Product</th>
                 <th>Name</th>
                 <th width="100px">Price</th>
-                <th width="100px">Quantity</th>
+                <th width="200px">Quantity</th>
                 <th width="100px">Total</th>
                 <th width="10px">Action</th>
               </thead>
@@ -273,10 +283,31 @@
     </div>
 
     <footer
-      class="flex w-full flex-col items-center justify-center border-t border-gray-200 bg-white pt-5 text-left max-md:hidden"
+      class="flex w-full flex-col border-t border-gray-200 pt-5 text-left max-md:hidden mt-5"
     >
       <div class="container">
         <div class="flex w-full items-start justify-start">
+          <div class="w-1/4">
+            <div class="flex flex-col">
+              <p class="py-2 text-100 text-black">Cửa Hàng Di Động Capstone</p>
+              <p class="title">Nhà Bán Lẻ Số 1 Việt Nam</p>
+              <div class="footer__social mx-auto">
+                <a href="https://www.facebook.com/">
+                  <i class="fa-brands fa-facebook-f"></i>
+                </a>
+                <a href="https://www.youtube.com/">
+                  <i class="fa-brands fa-youtube"></i>
+                </a>
+                <a href="https://www.tiktok.com/">
+                  <i class="fa-brands fa-tiktok"></i>
+                </a>
+                <a href="https://www.twitter.com/">
+                  <i class="fa-brands fa-twitter"></i>
+                </a>
+              </div>
+            </div>
+          </div>
+
           <div class="w-1/4">
             <div class="flex flex-col">
               <p class="my-2 text-sm font-bold text-ddv">Hỗ trợ khách hàng</p>
@@ -305,6 +336,7 @@
               >
             </div>
           </div>
+
           <div class="w-1/4">
             <div class="flex flex-col">
               <p class="my-2 text-sm font-bold text-ddv">Chính sách</p>
@@ -334,6 +366,7 @@
               >
             </div>
           </div>
+
           <div class="w-1/4">
             <div class="flex flex-col" style="width: 100%;">
               <p class="my-2 text-sm font-bold text-ddv">Liên hệ</p>
@@ -397,50 +430,6 @@
               </div>
             </div>
           </div>
-          <div class="w-1/4">
-            <div class="flex flex-col ">
-              <div
-                class="grid w-full grid-cols-4 items-center justify-between gap-2 py-2"
-              >
-                <a
-                  aria-label="facebook"
-                  href="https://www.facebook.com/"
-                  class="col-span-1 flex items-center justify-start"
-                >
-                  <i class="fa-brands fa-facebook"></i>
-                  <p class="pl-2 text-11 text-link">facebook</p>
-                </a>
-                <a
-                  aria-label="facebook"
-                  href="https://www.facebook.com/"
-                  class="col-span-1 flex items-center justify-start"
-                >
-                  <i class="fa-brands fa-facebook"></i>
-                  <p class="pl-2 text-11 text-link">Youtube</p>
-                </a>
-                <a
-                  aria-label="facebook"
-                  href="https://www.facebook.com/"
-                  class="col-span-1 flex items-center justify-start"
-                >
-                  <i class="fa-brands fa-facebook"></i>
-                  <p class="pl-2 text-11 text-link">Tiktok</p>
-                </a>
-                <a
-                  aria-label="facebook"
-                  href="https://www.facebook.com/"
-                  class="col-span-1 flex items-center justify-start"
-                >
-                  <i class="fa-brands fa-facebook"></i>
-                  <p class="pl-2 text-11 text-link">Zalo</p>
-                </a>
-              </div>
-              <p class="py-2 text-100 text-black">Cửa Hàng Di Động Capstone</p>
-              <p class="text-black" style="color: red; margin-left: 30px;">
-                Nhà Bán Lẻ Số 1 Việt Nam
-              </p>
-            </div>
-          </div>
         </div>
         <div class="my-2 h-px w-full bg-ddv"></div>
       </div>
@@ -473,9 +462,9 @@
 
     <script src="../asset/src/models/product.js"></script>
     <script src="../asset/src/service/api.js"></script>
-    <script src="js/shop.js"></script>
-    <script src="js/cart.js"></script>
-    <script src="js/listCart.js"></script>
-    <script src="js/shopping-cart.js"></script>
+    <script src="js/models/cart.js"></script>
+    <script src="js/models/listCart.js"></script>
+    <script src="js/controllers/shop.js"></script>
+    <script src="js/controllers/shopping-cart.js"></script>
   </body>
 </html>
