@@ -42,7 +42,7 @@ function ListCart() {
 
   this.checkProductCart = function (id) {
     var index = this.findRow(id);
-    console.log(index);
+    // console.log(index);
     if (index !== -1) {
       return true;
     }
