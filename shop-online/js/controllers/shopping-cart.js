@@ -1,8 +1,9 @@
 // var api = new Service();
 var listCart = new ListCart();
-window.load = () => {
-  getLocalStorage();
-};
+// window.load = () => {
+//   getLocalStorage();
+// };
+getLocalStorage();
 
 function setLocalStorage() {
   var dataString = JSON.stringify(listCart.arr);
@@ -44,9 +45,8 @@ function renderProductCartUI(data) {
           </button>
         </td>
     </tr>`;
-
-    getEle("tblListShoppingCart").innerHTML = content;
   }
+  getEle("tblListShoppingCart").innerHTML = content;
 }
 
 function productInfo() {
@@ -92,7 +92,6 @@ getEle("addToCart").onclick = function () {
 };
 
 function deleteProductItem(id) {
-  console.log(id);
   listCart.deleteCartItem(id);
 
   setLocalStorage();
