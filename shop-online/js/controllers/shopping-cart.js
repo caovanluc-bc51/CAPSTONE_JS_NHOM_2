@@ -1,6 +1,8 @@
 // var api = new Service();
 var listCart = new ListCart();
-getLocalStorage();
+window.load = () =>{
+  getLocalStorage();
+}
 
 function setLocalStorage() {
   var dataString = JSON.stringify(listCart.arr);
