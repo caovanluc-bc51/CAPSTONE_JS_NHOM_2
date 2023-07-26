@@ -56,7 +56,7 @@
     font-style: 14px;
     @extend .changeNumber;
   }
-  #cartQuantity {
+  .cartQuantity {
     @extend .changeNumberSmall;
     background-color: transparent;
     color: #212529;

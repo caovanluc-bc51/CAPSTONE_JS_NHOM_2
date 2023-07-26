@@ -39,8 +39,7 @@ function renderUI(data) {
               </div>
             </div>
           </div>
-        </div>
-        `;
+        </div>`;
   }
   getEle("productList").innerHTML = content;
 }

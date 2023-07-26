@@ -1,8 +1,8 @@
 // var api = new Service();
 var listCart = new ListCart();
-window.load = () =>{
+window.load = () => {
   getLocalStorage();
-}
+};
 
 function setLocalStorage() {
   var dataString = JSON.stringify(listCart.arr);
@@ -32,7 +32,7 @@ function renderProductCartUI(data) {
             <div class="changeNumberSmall" onclick="downQuantity('${product.id}')">
                 <i class="fa-solid fa-minus"></i>
             </div>
-            <span id="cartQuantity">${product.quantity}</span>
+            <span class="cartQuantity">${product.quantity}</span>
             <div class="changeNumberSmall" onclick="upQuantity('${product.id}')">
                 <i class="fa-solid fa-plus"></i>
             </div>
@@ -86,6 +86,9 @@ getEle("addToCart").onclick = function () {
       setLocalStorage();
     }
   }
+
+  var productName = getEle("productName").innerHTML;
+  alert(`Add "${productName}" to cart successful!`);
 };
 
 function deleteProductItem(id) {
@@ -98,9 +101,15 @@ function deleteProductItem(id) {
 
 function upQuantity(id) {
   var quantityUp = 0;
-  quantityUp = parseFloat(getEle("cartQuantity").innerHTML);
-  quantityUp++;
-  getEle("cartQuantity").innerHTML = quantityUp;
+  for (var i = 0; i < listCart.arr.length; i++) {
+    if (listCart.arr[i].id === id) {
+      quantityUp = parseFloat(
+        document.getElementsByClassName("cartQuantity")[i].innerHTML
+      );
+      quantityUp++;
+      document.getElementsByClassName("cartQuantity")[i].innerHTML = quantityUp;
+    }
+  }
 
   // console.log(id);
   listCart.upDownQuantity(id, quantityUp);
@@ -111,15 +120,21 @@ function upQuantity(id) {
 
 function downQuantity(id) {
   var quantityDown = 0;
-  quantityDown = parseFloat(getEle("cartQuantity").innerHTML);
-  quantityDown--;
-  if (quantityDown < 0) {
-    quantityDown = 1;
+  for (var i = 0; i < listCart.arr.length; i++) {
+    if (listCart.arr[i].id === id) {
+      quantityDown = parseFloat(
+        document.getElementsByClassName("cartQuantity")[i].innerHTML
+      );
+      quantityDown--;
+      if (quantityDown < 0) {
+        quantityDown = 1;
+      }
+      document.getElementsByClassName("cartQuantity")[i].innerHTML =
+        quantityDown;
+
+      listCart.upDownQuantity(id, quantityDown);
+    }
   }
-  getEle("cartQuantity").innerHTML = quantityDown;
-
-  listCart.upDownQuantity(id, quantityDown);
-
   setLocalStorage();
   renderProductCartUI(listCart.arr);
 }
