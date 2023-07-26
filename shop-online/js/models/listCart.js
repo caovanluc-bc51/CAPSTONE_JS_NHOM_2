@@ -9,11 +9,12 @@ function ListCart() {
     var index = -1;
     for (var i = 0; i < this.arr.length; i++) {
       var product = this.arr[i];
-      if (product.id == id) {
+      if (Number(product.id) === Number(id)) {
         index = i;
         break;
       }
     }
+    console.log(index);
     return index;
   };
 
