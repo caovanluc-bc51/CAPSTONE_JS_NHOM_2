@@ -1,90 +1,25 @@
 //
 var api = new Service();
 var validation = new Validation();
+var numberFormat = new Intl.NumberFormat("VN-vn");
 
 //
 function getEle(id) {
   return document.getElementById(id);
 }
-//
-function getListProduct() {
-  var promise = api.getListProductApi();
-  promise
-    .then(function (result) {
-      renderUIManager(result.data);
-    })
-    .catch(function (error) {
-      console.log(error);
-    });
-}
-getListProduct();
-//
-function renderUIManager(data) {
-  var content = "";
-  for (var i = 0; i < data.length; i++) {
-    var product = data[i];
-    content += `
-          <tr>
-          <td>${i + 1}</td>
-          <td>${product.name}</td>
-          <td>${product.price}</td>
-          <td>${product.screen}</td>
-          <td>${product.backCamera}</td>
-          <td>${product.frontCamera}</td>
-          <td>
-              <img src='${product.img}' width = '50' />
-          </td>
-          <td>${product.desc}</td>
-          <td>${product.type}</td>
-          <td>
-              <button id='btnEditClick' class='btn btn-success' data-toggle="modal" data-target="#myModal" onclick='editProduct(${
-                product.id
-              })' style = 'padding:4.5px 21.5px; margin-bottom: 5px'>Edit</button>
-              <button class='btn btn-danger'onclick="deleteProduct('${
-                product.id
-              }')">Delete</button>
-          </td>
-          </tr>
-          `;
-  }
-  getEle("tblDanhSachSP").innerHTML = content;
-}
-//thêm nút add product khi nhấn vào + Add Product
-//validation check 2 trường hợp sẽ hiển thị thông báo ngay khi người dùng nhập luôn không đợi người dùng nhấn addProduct
-function getArray() {
-  var promise = api.getListProductApi();
-  var array = [];
-  promise
-    .then(function (result) {
-      for (i = 0; i < result.data.length; i++) {
-        array.push(result.data[i]);
-      }
-    })
-    .catch(function (error) {
-      console.log(error);
-    });
-  return array;
-}
-var arrayProduct = getArray();
-//ADD CASE 1
-getEle("btnAddProduct").onclick = function () {
-  resetInput();
-  resetError();
-  getEle("name").disabled = false;
-  document.getElementsByClassName("modal-title")[0].innerHTML = "Add Product";
-  var buttonAdd = `<button class='btn btn-success'id='addProduct' onclick ='addProduct()'>Add Product</button>`;
-  document.getElementsByClassName("modal-footer")[0].innerHTML = buttonAdd;
-  function keyUpAddProduct() {
-    var name = getEle("name").value;
-    var price = getEle("price").value;
-    var screen = getEle("screen").value;
-    var backCamera = getEle("backCamera").value;
-    var frontCamera = getEle("frontCamera").value;
-    var imageLink = getEle("imageLink").value;
-    var description = getEle("description").value;
-    var type = getEle("type").value;
-    //flag
-    var isValid = true;
+
+function checkValidation(isAdd) {
+  var name = getEle("name").value;
+  var price = getEle("price").value;
+  var screen = getEle("screen").value;
+  var backCamera = getEle("backCamera").value;
+  var frontCamera = getEle("frontCamera").value;
+  var imageLink = getEle("imageLink").value;
+  var description = getEle("description").value;
+  var type = getEle("type").value;
+
+  var isValid = true;
+  if (isAdd) {
     //validation tên sản phẩm
     isValid &=
       validation.checkEmpty(
@@ -98,136 +33,7 @@ getEle("btnAddProduct").onclick = function () {
         "(*) Sản phẩm đã tồn tại",
         arrayProduct
       );
-    //validation price
-    isValid &=
-      validation.checkEmpty(
-        price,
-        "errorPrice",
-        "(*) Vui lòng nhập giá sản phẩm"
-      ) &&
-      validation.checkPattern(
-        price,
-        "errorPrice",
-        "(*) Vui lòng nhập giá sản phẩm bằng chữ số",
-        /^[0-9]+$/
-      );
-    //validation screen
-    isValid &= validation.checkEmpty(
-      screen,
-      "errorScreen",
-      "(*) Vui lòng nhập kích thước màn hình"
-    );
-    //validation backCamera
-    isValid &= validation.checkEmpty(
-      backCamera,
-      "errorBackCamera",
-      "(*) Vui lòng nhập camera sau của sản phẩm"
-    );
-    //validation frontCamera
-    isValid &= validation.checkEmpty(
-      frontCamera,
-      "errorFrontCamera",
-      "(*) Vui lòng nhập camera trước của sản phẩm"
-    );
-    //validation imageLink
-    isValid &= validation.checkEmpty(
-      imageLink,
-      "errorImageLink",
-      "(*) Vui lòng nhập hình ảnh của sản phẩm"
-    );
-    //validation description
-    isValid &= validation.checkEmpty(
-      description,
-      "errorDescription",
-      "(*) Vui lòng nhập mô tả của sản phẩm"
-    );
-    // validation type
-    isValid &=
-      validation.checkEmpty(
-        type,
-        "errorType",
-        "(*) Vui lòng nhập loại của sản phẩm"
-      ) &&
-      validation.checkType(
-        type,
-        "errorType",
-        "(*) Loại sản phẩm là Iphone hoặc Samsung"
-      );
-
-    document.getElementById("addProduct").onclick = function () {
-      if (isValid) {
-        var product = new Product(
-          "",
-          name,
-          price,
-          screen,
-          backCamera,
-          frontCamera,
-          imageLink,
-          description,
-          type
-        );
-        if (confirm(`Are you sure to add the product?`)) {
-          var promise = api.addProductApi(product);
-          promise
-            .then(function (result) {
-              getListProduct();
-              document.getElementsByClassName("close")[0].click();
-              //reset data đã nhập trước đó
-              getEle("name").value = "";
-              getEle("price").value = "";
-              getEle("screen").value = "";
-              getEle("backCamera").value = "";
-              getEle("frontCamera").value = "";
-              getEle("imageLink").value = "";
-              getEle("description").value = "";
-              getEle("type").value = "";
-            })
-            .catch(function (error) {
-              console.log(error);
-            });
-        } else {
-          document.getElementsByClassName("close")[0].click();
-        }
-      }
-    };
   }
-  getEle("name").addEventListener("keyup", keyUpAddProduct);
-  getEle("price").addEventListener("keyup", keyUpAddProduct);
-  getEle("screen").addEventListener("keyup", keyUpAddProduct);
-  getEle("backCamera").addEventListener("keyup", keyUpAddProduct);
-  getEle("frontCamera").addEventListener("keyup", keyUpAddProduct);
-  getEle("imageLink").addEventListener("keyup", keyUpAddProduct);
-  getEle("description").addEventListener("keyup", keyUpAddProduct);
-  getEle("type").addEventListener("keyup", keyUpAddProduct);
-};
-//ADD CASE 2
-function addProduct() {
-  resetInput();
-  resetError();
-  var name = getEle("name").value;
-  var price = getEle("price").value;
-  var screen = getEle("screen").value;
-  var backCamera = getEle("backCamera").value;
-  var frontCamera = getEle("frontCamera").value;
-  var imageLink = getEle("imageLink").value;
-  var description = getEle("description").value;
-  var type = getEle("type").value;
-  //flag
-  var isValid = true;
-  //validation tên sản phẩm
-  isValid &=
-    validation.checkEmpty(
-      name,
-      "errorName",
-      "(*) Vui lòng nhập tên sản phẩm"
-    ) &&
-    validation.checkExistAccount(
-      name,
-      "errorName",
-      "(*) Sản phẩm đã tồn tại",
-      arrayProduct
-    );
   //validation price
   isValid &=
     validation.checkEmpty(
@@ -271,7 +77,7 @@ function addProduct() {
     "errorDescription",
     "(*) Vui lòng nhập mô tả của sản phẩm"
   );
-  //validation type
+  // validation type
   isValid &=
     validation.checkEmpty(
       type,
@@ -283,8 +89,178 @@ function addProduct() {
       "errorType",
       "(*) Loại sản phẩm là Iphone hoặc Samsung"
     );
+  return isValid;
+}
 
-  document.getElementById("addProduct").onclick = function () {
+//
+function getListProduct() {
+  getEle("loader").style.display = "block";
+  var promise = api.getListProductApi();
+  promise
+    .then(function (result) {
+      renderUIManager(result.data);
+      getEle("loader").style.display = "none";
+    })
+    .catch(function (error) {
+      console.log(error);
+      getEle("loader").style.display = "none";
+    });
+}
+
+getListProduct();
+
+//
+function renderUIManager(data) {
+  var content = "";
+  for (var i = 0; i < data.length; i++) {
+    var product = data[i];
+    content += `
+        <tr>
+          <td>${i + 1}</td>
+          <td>${product.name}</td>
+          <td>$${numberFormat.format(product.price)}</td>
+          <td>${product.screen}</td>
+          <td>${product.backCamera}</td>
+          <td>${product.frontCamera}</td>
+          <td>
+              <img src='${product.img}' width = '50' />
+          </td>
+          <td>${product.desc}</td>
+          <td>${product.type}</td>
+          <td>
+            <div class="d-flex">
+              <button 
+                id="btnEditClick" 
+                class="btn btn-success" 
+                data-toggle="modal" 
+                data-target="#myModal" 
+                style="margin-right:5px"
+                onclick="editProduct('${product.id}')"
+              >
+                <i class="fa-regular fa-pen-to-square"></i>
+              </button>
+              <button
+                class = "btn btn-danger"
+                onclick = "deleteProduct('${product.id}')"
+              >
+                <i class="fa-regular fa-trash-can"></i>
+              </button>
+            </div>
+          </td>
+        </tr>`;
+  }
+  getEle("tblDanhSachSP").innerHTML = content;
+}
+
+//thêm nút add product khi nhấn vào + Add Product
+//validation check 2 trường hợp sẽ hiển thị thông báo ngay khi người dùng nhập luôn không đợi người dùng nhấn addProduct
+function getArray() {
+  var promise = api.getListProductApi();
+  var array = [];
+  promise
+    .then(function (result) {
+      for (i = 0; i < result.data.length; i++) {
+        array.push(result.data[i]);
+      }
+    })
+    .catch(function (error) {
+      console.log(error);
+    });
+  return array;
+}
+
+var arrayProduct = getArray();
+
+//ADD CASE 1
+getEle("btnAddProduct").onclick = function () {
+  resetInput();
+  resetError();
+
+  getEle("name").disabled = false;
+
+  document.getElementsByClassName("modal-title")[0].innerHTML = "Add Product";
+
+  var buttonAdd = `<button 
+                      class="btn btn-success"
+                      id="addProduct"
+                      onclick ="addProduct()">
+                      Add Product
+                    </button>`;
+
+  document.getElementsByClassName("modal-footer")[0].innerHTML = buttonAdd;
+
+  function keyUpAddProduct() {
+    var name = getEle("name").value;
+    var price = getEle("price").value;
+    var screen = getEle("screen").value;
+    var backCamera = getEle("backCamera").value;
+    var frontCamera = getEle("frontCamera").value;
+    var imageLink = getEle("imageLink").value;
+    var description = getEle("description").value;
+    var type = getEle("type").value;
+
+    //flag
+    var isValid = checkValidation(true);
+
+    getEle("addProduct").onclick = function () {
+      if (isValid) {
+        var product = new Product(
+          "",
+          name,
+          price,
+          screen,
+          backCamera,
+          frontCamera,
+          imageLink,
+          description,
+          type
+        );
+
+        if (confirm(`Are you sure to add the product?`)) {
+          var promise = api.addProductApi(product);
+          promise
+            .then(function (result) {
+              getListProduct();
+              document.getElementsByClassName("close")[0].click();
+            })
+            .catch(function (error) {
+              console.log(error);
+            });
+        } else {
+          document.getElementsByClassName("close")[0].click();
+        }
+      }
+    };
+  }
+
+  getEle("name").addEventListener("keyup", keyUpAddProduct);
+  getEle("price").addEventListener("keyup", keyUpAddProduct);
+  getEle("screen").addEventListener("keyup", keyUpAddProduct);
+  getEle("backCamera").addEventListener("keyup", keyUpAddProduct);
+  getEle("frontCamera").addEventListener("keyup", keyUpAddProduct);
+  getEle("imageLink").addEventListener("keyup", keyUpAddProduct);
+  getEle("description").addEventListener("keyup", keyUpAddProduct);
+  getEle("type").addEventListener("keyup", keyUpAddProduct);
+};
+
+//ADD CASE 2
+function addProduct() {
+  resetInput();
+  resetError();
+
+  var name = getEle("name").value;
+  var price = getEle("price").value;
+  var screen = getEle("screen").value;
+  var backCamera = getEle("backCamera").value;
+  var frontCamera = getEle("frontCamera").value;
+  var imageLink = getEle("imageLink").value;
+  var description = getEle("description").value;
+  var type = getEle("type").value;
+
+  //flag
+  var isValid = checkValidation(true);
+
+  getEle("addProduct").onclick = function () {
     if (isValid) {
       var product = new Product(
         "",
@@ -297,21 +273,13 @@ function addProduct() {
         description,
         type
       );
+
       if (confirm(`Are you sure to add the product?`)) {
         var promise = api.addProductApi(product);
         promise
           .then(function () {
             getListProduct();
             document.getElementsByClassName("close")[0].click();
-            //reset data đã nhập trước đó
-            getEle("name").value = "";
-            getEle("price").value = "";
-            getEle("screen").value = "";
-            getEle("backCamera").value = "";
-            getEle("frontCamera").value = "";
-            getEle("imageLink").value = "";
-            getEle("description").value = "";
-            getEle("type").value = "";
           })
           .catch(function (error) {
             console.log(error);
@@ -322,7 +290,8 @@ function addProduct() {
     }
   };
 }
-//
+
+//DELETE
 function deleteProduct(id) {
   //Ask a question before deleting a product
   if (confirm(`Are you sure to delete the product?`)) {
@@ -337,13 +306,22 @@ function deleteProduct(id) {
       });
   }
 }
+
 //EDIT CASE 1
 function editProduct(id) {
   resetInput();
   resetError();
+
   document.getElementsByClassName("modal-title")[0].innerHTML = "Edit Product";
-  var buttonUpdate = `<button class='btn btn-success'onclick ='updateProduct(${id})' id = 'btnUpdate'>Update Product</button>`;
+  var buttonUpdate = `<button 
+                        class="btn btn-success"
+                        onclick ="updateProduct('${id}')"   
+                        id = "btnUpdate">
+                        Update Product
+                      </button>`;
+
   document.getElementsByClassName("modal-footer")[0].innerHTML = buttonUpdate;
+
   var promise = api.getDetailProductByID(id);
   promise
     .then(function (result) {
@@ -372,65 +350,9 @@ function editProduct(id) {
     var type = getEle("type").value;
 
     //flag
-    var isValid = true;
+    var isValid = checkValidation(false);
 
-    //validation price
-    isValid &=
-      validation.checkEmpty(
-        price,
-        "errorPrice",
-        "(*) Vui lòng nhập giá sản phẩm"
-      ) &&
-      validation.checkPattern(
-        price,
-        "errorPrice",
-        "(*) Vui lòng nhập giá sản phẩm bằng chữ số",
-        /^[0-9]+$/
-      );
-    //validation screen
-    isValid &= validation.checkEmpty(
-      screen,
-      "errorScreen",
-      "(*) Vui lòng nhập kích thước màn hình"
-    );
-    //validation backCamera
-    isValid &= validation.checkEmpty(
-      backCamera,
-      "errorBackCamera",
-      "(*) Vui lòng nhập camera sau của sản phẩm"
-    );
-    //validation frontCamera
-    isValid &= validation.checkEmpty(
-      frontCamera,
-      "errorFrontCamera",
-      "(*) Vui lòng nhập camera trước của sản phẩm"
-    );
-    //validation imageLink
-    isValid &= validation.checkEmpty(
-      imageLink,
-      "errorImageLink",
-      "(*) Vui lòng nhập hình ảnh của sản phẩm"
-    );
-    //validation description
-    isValid &= validation.checkEmpty(
-      description,
-      "errorDescription",
-      "(*) Vui lòng nhập mô tả của sản phẩm"
-    );
-    //validation type
-    isValid &=
-      validation.checkEmpty(
-        type,
-        "errorType",
-        "(*) Vui lòng nhập loại của sản phẩm"
-      ) &&
-      validation.checkType(
-        type,
-        "errorType",
-        "(*) Loại sản phẩm là Iphone hoặc Samsung"
-      );
-
-    document.getElementById("btnUpdate").onclick = function () {
+    getEle("btnUpdate").onclick = function () {
       if (isValid) {
         var product = new Product(
           id,
@@ -477,6 +399,7 @@ function editProduct(id) {
   getEle("description").addEventListener("keyup", keyUpEditProduct);
   getEle("type").addEventListener("keyup", keyUpEditProduct);
 }
+
 //EDIT CASE 2
 function updateProduct(id) {
   var name = getEle("name").value;
@@ -487,71 +410,10 @@ function updateProduct(id) {
   var imageLink = getEle("imageLink").value;
   var description = getEle("description").value;
   var type = getEle("type").value;
-  //flag
-  var isValid = true;
-  //validation name product
-  isValid &= validation.checkEmpty(
-    name,
-    "errorName",
-    "(*) Vui lòng nhập tên sản phẩm"
-  );
-  //validation price
-  isValid &=
-    validation.checkEmpty(
-      price,
-      "errorPrice",
-      "(*) Vui lòng nhập giá sản phẩm"
-    ) &&
-    validation.checkPattern(
-      price,
-      "errorPrice",
-      "(*) Vui lòng nhập giá sản phẩm bằng chữ số",
-      /^[0-9]+$/
-    );
-  //validation screen
-  isValid &= validation.checkEmpty(
-    screen,
-    "errorScreen",
-    "(*) Vui lòng nhập kích thước màn hình"
-  );
-  //validation backCamera
-  isValid &= validation.checkEmpty(
-    backCamera,
-    "errorBackCamera",
-    "(*) Vui lòng nhập camera sau của sản phẩm"
-  );
-  //validation frontCamera
-  isValid &= validation.checkEmpty(
-    frontCamera,
-    "errorFrontCamera",
-    "(*) Vui lòng nhập camera trước của sản phẩm"
-  );
-  //validation imageLink
-  isValid &= validation.checkEmpty(
-    imageLink,
-    "errorImageLink",
-    "(*) Vui lòng nhập hình ảnh của sản phẩm"
-  );
-  //validation description
-  isValid &= validation.checkEmpty(
-    description,
-    "errorDescription",
-    "(*) Vui lòng nhập mô tả của sản phẩm"
-  );
-  //validation type
-  isValid &=
-    validation.checkEmpty(
-      type,
-      "errorType",
-      "(*) Vui lòng nhập loại của sản phẩm"
-    ) &&
-    validation.checkType(
-      type,
-      "errorType",
-      "(*) Loại sản phẩm là Iphone hoặc Samsung"
-    );
 
-  document.getElementById("btnUpdate").onclick = function () {
+  var isValid = checkValidation(false);
+
+  getEle("btnUpdate").onclick = function () {
     if (isValid) {
       var product = new Product(
         id,
@@ -564,6 +426,7 @@ function updateProduct(id) {
         description,
         type
       );
+
       if (confirm(`Are you sure to update the product?`)) {
         var promise = api.updateProductApi(product);
         promise
@@ -597,52 +460,6 @@ function updateProduct(id) {
   };
 }
 
-// onchange catelogy
-// function getCatelogy() {
-//   var type = getEle("mySelect").value;
-//   if (type === "Samsung") {
-//     var listSamSung = [];
-//     var promise = api.getListProductApi();
-//     promise
-//       .then(function (result) {
-//         for (var i = 0; i < result.data.length; i++) {
-//           var samsung = result.data[i];
-//           if (
-//             result.data[i].type === "Samsung" ||
-//             result.data[i].type === "samsung"
-//           ) {
-//             listSamSung.push(samsung);
-//           }
-//         }
-//         renderUIManager(listSamSung);
-//       })
-//       .catch(function (error) {
-//         console.log(error);
-//       });
-//   } else if (type === "Iphone") {
-//     var listIphone = [];
-//     var promise = api.getListProductApi();
-//     promise
-//       .then(function (result) {
-//         for (var i = 0; i < result.data.length; i++) {
-//           var iphone = result.data[i];
-//           if (
-//             result.data[i].type === "Iphone" ||
-//             result.data[i].type === "iphone"
-//           ) {
-//             listIphone.push(iphone);
-//           }
-//         }
-//         renderUIManager(listIphone);
-//       })
-//       .catch(function (error) {
-//         console.log(error);
-//       });
-//   } else {
-//     getListProduct();
-//   }
-// }
-//search name product
 function searchProduct() {
   var txtSearch = getEle("searchProduct").value;
   var promise = api.getListProductApi();
