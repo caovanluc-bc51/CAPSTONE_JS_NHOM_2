@@ -20,30 +20,10 @@
       referrerpolicy="no-referrer"
     />
 
+    <link rel="stylesheet" href="../asset/css/main.css" />
     <link rel="stylesheet" href="css/shop.css" />
   </head>
   <body>
-    <!-- <header
-      class="page-header flex h-[95px] w-full min-w-full items-center justify-center max-md:h-[60px]"
-    >
-      <div class="container">
-        <div
-          class="w-full items-center py-2 max-md:grid max-md:h-[60px] max-md:grid-cols-8  max-md:justify-between  md:flex md:gap-x-8"
-        >
-          <div
-            class="max-md:col-span-1 max-md:flex max-md:h-[50px] max-md:items-center max-md:justify-center md:w-1/5"
-          >
-            <a
-              href="#"
-              title="Di Động Việt - Hệ thống bán lẻ Điện thoại, Macbook, Phụ kiện chính hãng"
-            >
-            </a>
-          </div>
-          <div></div>
-          <div></div>
-        </div>
-      </div>
-    </header> -->
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
       <div class="container">
         <button
@@ -72,6 +52,7 @@
           <button
             class="btnPhone-shadow my-2 my-sm-0 p-2"
             type="button"
+            id="cart"
             data-toggle="modal"
             data-target="#shoppingCart"
           >
@@ -102,6 +83,7 @@
     <!-- list product -->
     <section class="container ">
       <!-- list sản phẩm -->
+      <div class="loader" id="loader"></div>
       <div class="row" id="productList">
         <!-- <div class="col-12 col-md-6 col-lg-3 my-3">
           <div class="card cardPhone">
@@ -207,7 +189,7 @@
                       class="number"
                       id="numberToBuy"
                       value="1"
-                      min="0"
+                      min="1"
                     />
                     <div class="changeNumber" onclick="plus()">
                       <i class="fa-solid fa-plus"></i>
@@ -267,18 +249,22 @@
               </thead>
               <tbody id="tblListShoppingCart"></tbody>
             </table>
+
+            <div class="d-flex align-items-center justify-content-end">
+              <h4 class="px-2 my-0">Total:</h4>
+              <h5 class=" my-0" id="totalBill">$0</h5>
+            </div>
           </div>
           <div class="modal-footer">
-            <button type="button" class="btn btn-primary" id="payment">
-              Payment
-            </button>
-
             <button
               type="button"
               class="btn btn-secondary"
               data-dismiss="modal"
             >
-              Close
+              Continue shopping
+            </button>
+            <button type="button" class="btn btn-primary" id="payment">
+              Payment
             </button>
           </div>
         </div>

@@ -1,22 +1,27 @@
 var api = new Service();
+var numberFormat = new Intl.NumberFormat("VN-vn");
 
 function getEle(id) {
   return document.getElementById(id);
 }
 
 function getListProduct() {
+  getEle("loader").style.display = "block";
   var promise = api.getListProductApi();
   promise
     .then(function (result) {
       renderUI(result.data);
+      getEle("loader").style.display = "none";
     })
     .catch(function (error) {
       console.log(error);
+      getEle("loader").style.display = "none";
     });
 }
 
 getListProduct();
 
+//3. Hiển thị danh sách sản phẩm cho khách hàng.
 function renderUI(data) {
   var content = "";
   for (var i = 0; i < data.length; i++) {
@@ -31,9 +36,13 @@ function renderUI(data) {
             />
             <div class="card-body">
               <h3 class="cardPhone__title">${product.name}</h3>
-              <h3 class="cardPhone__price">$${product.price}</h3>
+              <h3 class="cardPhone__price">$${numberFormat.format(
+                product.price
+              )}</h3>
               <div>
-                <button class="btnPhone-shadow" type="button" data-toggle="modal" data-target="#productDetailPopup" onclick = productDetail('${product.id}')>
+                <button class="btnPhone-shadow" type="button" data-toggle="modal" data-target="#productDetailPopup" onclick = productDetail('${
+                  product.id
+                }')>
                   <i class="fa-solid fa-shopping-cart"></i> Add to cart
                 </button>
               </div>
@@ -44,6 +53,7 @@ function renderUI(data) {
   getEle("productList").innerHTML = content;
 }
 
+//5. Cho phép người dùng chọn sản phẩm bỏ vào giỏ hàng
 function productDetail(idSP) {
   getEle("numberToBuy").value = 1;
   var promise = api.getDetailProductByID(idSP);
@@ -66,16 +76,16 @@ function productDetail(idSP) {
     });
 }
 
+//4. Tạo một dropdown (select) cho phép người dùng filter lọc hiển thị danh sách sản phẩm theo loại sản phẩm
 function searchProductByType() {
-  var search = getEle("category").value;
-  // console.log(search);
+  var search = getEle("category").value.toLowerCase();
 
   var promise = api.getListProductApi();
   promise
     .then(function (result) {
       var productList = [];
       for (var i = 0; i < result.data.length; i++) {
-        if (result.data[i].type === search) {
+        if (result.data[i].type.toLowerCase() === search) {
           productList.push(result.data[i]);
           renderUI(productList);
         } else if (search === "All") {
@@ -91,15 +101,15 @@ function searchProductByType() {
 
 function plus() {
   var quantity = parseFloat(getEle("numberToBuy").value);
-  quantity += 1;
+  quantity++;
   getEle("numberToBuy").value = quantity;
 }
 
 function minus() {
   var quantity = parseFloat(getEle("numberToBuy").value);
-  quantity -= 1;
+  quantity--;
   if (quantity <= 0) {
-    quantity = 0;
+    quantity = 1;
   }
   getEle("numberToBuy").value = quantity;
 }

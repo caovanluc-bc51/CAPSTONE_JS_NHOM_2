@@ -1,4 +1,4 @@
-//lớp đối tượng sản phẩm
+//2. Xây dựng lớp đối tượng Products
 function Product(
   _id,
   _name,

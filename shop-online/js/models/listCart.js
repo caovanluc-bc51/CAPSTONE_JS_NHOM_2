@@ -1,3 +1,4 @@
+//6.2. Tạo một đối tượng mới dành riêng cho giỏ hàng rồi push vào mảng cart
 function ListCart() {
   this.arr = [];
 
@@ -50,6 +51,7 @@ function ListCart() {
     return false;
   };
 
+  // 13. Cho phép người dùng remove sản phẩm ra khỏi giỏ hàng
   this.deleteCartItem = function (id) {
     var index = this.findRow(id);
     if (index !== -1) {
@@ -57,6 +59,7 @@ function ListCart() {
     }
   };
 
+  //12. Người dùng nhấn nút thanh toán, clear giỏ hàng, set mảng giỏ hàng về mảng rỗng []
   this.deleteAllCartItem = function (listCart) {
     listCart.splice(0, listCart.length);
   };
