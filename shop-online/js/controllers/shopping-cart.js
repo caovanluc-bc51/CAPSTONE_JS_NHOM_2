@@ -154,6 +154,7 @@ function downQuantity(id) {
 //12. Người dùng nhấn nút thanh toán, clear giỏ hàng, set mảng giỏ hàng về mảng rỗng []
 getEle("payment").onclick = function () {
   listCart.deleteAllCartItem(listCart.arr);
+  alert("Your payment is successful");
 
   setLocalStorage();
   renderProductCartUI(listCart.arr);
