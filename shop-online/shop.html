@@ -84,26 +84,7 @@
     <section class="container ">
       <!-- list sản phẩm -->
       <div class="loader" id="loader"></div>
-      <div class="row" id="productList">
-        <!-- <div class="col-12 col-md-6 col-lg-3 my-3">
-          <div class="card cardPhone">
-            <img
-              src="../asset/img/product1.jpg"
-              class="card-img-top"
-              alt="..."
-            />
-            <div class="card-body">
-              <h3 class="cardPhone__title">IPHONE X</h3>
-              <h3 class="cardPhone__price">$100</h3>
-              <div>
-                <button class="btnPhone-shadow">
-                  <i class="fa-solid fa-shopping-cart"></i> Add to cart
-                </button>
-              </div>
-            </div>
-          </div>
-        </div> -->
-      </div>
+      <div class="row" id="productList"></div>
     </section>
 
     <!-- product detail, add to cart -->
@@ -275,10 +256,12 @@
       class="flex w-full flex-col border-t border-gray-200 pt-5 text-left max-md:hidden mt-5"
     >
       <div class="container">
-        <div class="flex w-full items-start justify-start">
-          <div class="w-1/4">
-            <div class="flex flex-col">
-              <p class="py-2 text-100 text-black">Cửa Hàng Di Động Capstone</p>
+        <div class="row">
+          <div class="col-12 col-xl-3 col-md-12 col-sm-12">
+            <div class="flex flex-col shop-info">
+              <p class="py-2 text-100 text-black text-center">
+                Cửa Hàng Di Động Capstone
+              </p>
               <p class="title">Nhà Bán Lẻ Số 1 Việt Nam</p>
               <div class="footer__social mx-auto">
                 <a href="https://www.facebook.com/">
@@ -297,7 +280,7 @@
             </div>
           </div>
 
-          <div class="w-1/4">
+          <div class="col-12 col-xl-3 col-md-4 col-sm-6">
             <div class="flex flex-col">
               <p class="my-2 text-sm font-bold text-ddv">Hỗ trợ khách hàng</p>
               <a
@@ -326,7 +309,7 @@
             </div>
           </div>
 
-          <div class="w-1/4">
+          <div class="col-12 col-xl-3 col-md-4 col-sm-6">
             <div class="flex flex-col">
               <p class="my-2 text-sm font-bold text-ddv">Chính sách</p>
               <a
@@ -356,7 +339,7 @@
             </div>
           </div>
 
-          <div class="w-1/4">
+          <div class="col-12 col-xl-3 col-md-4 col-sm-7">
             <div class="flex flex-col" style="width: 100%;">
               <p class="my-2 text-sm font-bold text-ddv">Liên hệ</p>
               <div class="flex flex-col" style="width: 100%;">
@@ -367,9 +350,9 @@
                   <p class="text-14 font-medium">Kỹ thuật:</p>
                   <div class="flex items-center justify-end pl-4">
                     <p class=" text-16 font-bold text-link ">
-                      <a href="tel:+1900">1900.1000</a>
+                      <a href="tel:+1900" class="text-14">1900.1000</a>
                     </p>
-                    <p class="pl-2 text-14 font-normal text-black">
+                    <p class="pl-2 text-12 font-normal text-black">
                       (08:30 – 21:30)
                     </p>
                   </div>
@@ -381,9 +364,9 @@
                   <p class="text-14 font-medium">Bảo hành:</p>
                   <div class="flex items-center justify-end pl-4">
                     <p class=" text-16 font-bold text-link ">
-                      <a href="tel:+1900">1900.1000</a>
+                      <a href="tel:+1900" class="text-14">1900.1000</a>
                     </p>
-                    <p class="pl-2 text-14 font-normal text-black">
+                    <p class="pl-2 text-12 font-normal text-black">
                       (09:00 – 21:00)
                     </p>
                   </div>
@@ -395,9 +378,9 @@
                   <p class="text-14 font-medium">Góp ý:</p>
                   <div class="flex items-center justify-end pl-4">
                     <p class=" text-16 font-bold text-link ">
-                      <a href="tel:+1900">1900.1000</a>
+                      <a href="tel:+1900" class="text-14">1900.1000</a>
                     </p>
-                    <p class="pl-2 text-14 font-normal text-black">
+                    <p class="pl-2 text-12 font-normal text-black">
                       (08:30 – 21:30)
                     </p>
                   </div>
@@ -409,9 +392,9 @@
                   <p class="text-14 font-medium">Gọi mua:</p>
                   <div class="flex items-center justify-end pl-4">
                     <p class=" text-16 font-bold text-link ">
-                      <a href="tel:+1900">1900.1000</a>
+                      <a href="tel:+1900" class="text-14">1900.1000</a>
                     </p>
-                    <p class="pl-2 text-14 font-normal text-black">
+                    <p class="pl-2 text-12 font-normal text-black">
                       (07:30 – 21:30)
                     </p>
                   </div>
@@ -420,6 +403,7 @@
             </div>
           </div>
         </div>
+
         <div class="my-2 h-px w-full bg-ddv"></div>
       </div>
     </footer>

@@ -63,7 +63,7 @@ a {
   color: rgb(190 30 45 / var(--tw-text-opacity));
 }
 .font-bold {
-  font-weight: 700;
+  font-weight: 600;
 }
 .text-sm {
   font-size: 14px;
@@ -91,6 +91,10 @@ a {
 
 .text-14 {
   font-size: 13.5px;
+  line-height: 20px;
+}
+.text-12 {
+  font-size: 11.5px;
   line-height: 20px;
 }
 .font-medium {
@@ -202,5 +206,11 @@ footer {
 
   .hover\:text-ddv:hover {
     color: $primaryColor;
+  }
+}
+
+@media screen and (max-width: 1199px) {
+  .shop-info {
+    margin-bottom: 30px;
   }
 }
